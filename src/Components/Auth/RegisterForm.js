@@ -18,7 +18,7 @@ export default function RegisterForm({ changeForm }) {
       setLoading(true);
       try {
         const response = await RegisterApi(formData);
-        if (response.statusCode) throw "Correo o usuario ya existen";
+        if (response.error) throw "Correo o usuario ya existen";
         Toast.show("Tu cuenta ha sido creada", {
           position: Toast.positions.CENTER,
         });

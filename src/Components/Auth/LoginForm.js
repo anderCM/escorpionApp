@@ -21,7 +21,7 @@ export default function LoginForm({ changeForm }) {
       try {
         const response = await LoginApi(formData);
         console.log(response);
-        if (response.statusCode) throw "Usuario o contraseña inválido";
+        if (response.error) throw "Usuario o contraseña inválido";
         login(response);
       } catch (error) {
         Toast.show(error, {

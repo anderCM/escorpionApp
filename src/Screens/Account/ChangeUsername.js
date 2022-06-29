@@ -31,7 +31,7 @@ export default function ChangeUsername() {
       setLoading(true);
       try {
         const response = await updateUserApi(auth, formData);
-        if (response.statusCode) throw "Este Alias ya existe";
+        if (response.error) throw "Este Alias ya existe";
         Toast.show("Alias cambiado correctamente", {
           position: Toast.positions.CENTER,
         });

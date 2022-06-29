@@ -22,7 +22,7 @@ export default function ChangePassword() {
       setLoading(true);
       try {
         const response = await updateUserApi(auth, formData);
-        if (response.statusCode) throw "Error al cambiar la contraseña";
+        if (response.error) throw "Error al cambiar la contraseña";
         Toast.show("Contraseña actualizada correctamente", {
           position: Toast.positions.CENTER,
         });
