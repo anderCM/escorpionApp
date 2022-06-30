@@ -18,15 +18,18 @@ import colors from "../../Styles/Colors";
 
 export default function Addresses() {
   const [addresses, setAddresses] = useState(null);
+  const [reloadAddresses, setReloadAddresses] = useState(false);
   const navigation = useNavigation();
   const { auth } = useAuth();
   useFocusEffect(
     useCallback(() => {
+      setAddresses(null);
       (async () => {
         const response = await getAddressesApi(auth);
-        setAddresses(response);
+        setAddresses(response.data);
+        setReloadAddresses(false);
       })();
-    }, [])
+    }, [reloadAddresses])
   );
   return (
     <ScrollView style={styles.container}>
@@ -46,7 +49,10 @@ export default function Addresses() {
       ) : size(addresses) === 0 ? (
         <Text style={styles.noAddressText}>Crea tu Primera dirección</Text>
       ) : (
-        <AddressList addresses={addresses} />
+        <AddressList
+          addresses={addresses}
+          setReloadAddresses={setReloadAddresses}
+        />
       )}
     </ScrollView>
   );

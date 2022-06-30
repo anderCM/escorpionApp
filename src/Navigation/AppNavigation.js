@@ -5,8 +5,8 @@ import { createMaterialBottomTabNavigator } from "@react-navigation/material-bot
 import AwesomeIcon from "react-native-vector-icons/FontAwesome";
 
 import AccountStack from "./AccountStack";
+import ProductStack from "./ProductStack";
 import colors from "../Styles/Colors";
-import Home from "../Screens/Home";
 import Favorites from "../Screens/Favorites";
 import Cart from "../Screens/Cart";
 
@@ -25,8 +25,8 @@ export default function AppNavigation() {
         })}
       >
         <Tab.Screen
-          name="home"
-          component={Home}
+          name="homeApp"
+          component={ProductStack}
           options={{ title: "Inicio" }}
         />
         <Tab.Screen
@@ -40,7 +40,7 @@ export default function AppNavigation() {
           options={{ title: "Carrito" }}
         />
         <Tab.Screen
-          name="account"
+          name="accountApp"
           component={AccountStack}
           options={{ title: "Mi Cuenta" }}
         />
@@ -52,7 +52,7 @@ export default function AppNavigation() {
 function setIcon(route, routeStatus) {
   let iconName = "";
   switch (route.name) {
-    case "home":
+    case "homeApp":
       iconName = "home";
       break;
     case "favorites":
@@ -61,8 +61,8 @@ function setIcon(route, routeStatus) {
     case "cart":
       iconName = "shopping-cart";
       break;
-    case "account":
-      iconName = "bars";
+    case "accountApp":
+      iconName = "user-circle-o";
       break;
     default:
       break;

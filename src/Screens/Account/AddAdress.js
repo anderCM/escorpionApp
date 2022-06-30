@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { TextInput, Button } from "react-native-paper";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
@@ -9,12 +9,42 @@ import Toast from "react-native-root-toast";
 
 import useAuth from "../../Hooks/useAuth";
 import { FormStyle } from "../../Styles";
-import { addAddressApi } from "../../Api/Address";
+import {
+  addAddressApi,
+  getExactAddressesApi,
+  updateAddressApi,
+} from "../../Api/Address";
 
-export default function AddAdress() {
+export default function AddAdress({ route }) {
   const [loading, setLoading] = useState(false);
+  const [newAddress, setNewAddress] = useState(true);
   const navigation = useNavigation();
   const { auth } = useAuth();
+
+  useEffect(() => {
+    (async () => {
+      if (route.params?.idAddress) {
+        setNewAddress(false);
+        navigation.setOptions({ title: "Actualizar Dirección" });
+        const response = await getExactAddressesApi(
+          auth,
+          route.params.idAddress
+        );
+        const data = response.data;
+        await formik.setFieldValue("id", data.id);
+        await formik.setFieldValue("title", data.attributes.title);
+        await formik.setFieldValue(
+          "name_lastname",
+          data.attributes.name_lastname
+        );
+        await formik.setFieldValue("address", data.attributes.address);
+        await formik.setFieldValue("city", data.attributes.city);
+        await formik.setFieldValue("district", data.attributes.district);
+        await formik.setFieldValue("phone", data.attributes.phone);
+        await formik.setFieldValue("reference", data.attributes.reference);
+      }
+    })();
+  }, [route.params]);
 
   const formik = useFormik({
     initialValues: initialValues(),
@@ -22,10 +52,12 @@ export default function AddAdress() {
     onSubmit: async (formData) => {
       setLoading(true);
       try {
-        await addAddressApi(auth, formData);
-        Toast.show("Dirección agregada correctamente", {
-          position: Toast.positions.CENTER,
-        });
+        if (newAddress) {
+          const response = await addAddressApi(auth, formData);
+          if (response.error) throw "Error al agregar Dirección";
+        } else {
+          await updateAddressApi(auth, formData);
+        }
         navigation.goBack();
       } catch (error) {
         Toast.show(error, {
@@ -108,7 +140,7 @@ export default function AddAdress() {
           onPress={formik.handleSubmit}
           loading={loading}
         >
-          Agregar Dirección
+          {newAddress ? "Agregar Dirección" : "Actualizar Dirección"}
         </Button>
       </View>
     </KeyboardAwareScrollView>

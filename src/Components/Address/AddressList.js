@@ -2,25 +2,27 @@ import React from "react";
 import { View, Text, StyleSheet, Alert } from "react-native";
 import { Button } from "react-native-paper";
 import { map } from "lodash";
+import { useNavigation } from "@react-navigation/native";
 import AwesomeIcon from "react-native-vector-icons/FontAwesome";
 
 import useAuth from "../../Hooks/useAuth";
 import { deleteAddressApi } from "../../Api/Address";
 import colors from "../../Styles/Colors";
 
-export default function AddressList({ addresses }) {
+export default function AddressList({ addresses, setReloadAddresses }) {
   const { auth } = useAuth();
+  const navigation = useNavigation();
   const deleteAddressAlert = (address) => {
     Alert.alert(
       "Eliminando Dirección",
-      `¿Estás seguro que quieres eliminar la dirección: ${address.title}?`,
+      `¿Estás seguro que quieres eliminar la dirección: ${address.attributes.title}?`,
       [
         {
           text: "NO",
         },
         {
           text: "SI",
-          onPress: () => deleteAddress(address._id),
+          onPress: () => deleteAddress(address.id),
         },
       ],
       { cancelable: false }
@@ -29,31 +31,36 @@ export default function AddressList({ addresses }) {
 
   const deleteAddress = async (idAddress) => {
     try {
-      const response = await deleteAddressApi(auth, idAddress);
-      console.log(response)
+      await deleteAddressApi(auth, idAddress);
+      setReloadAddresses(true);
     } catch (error) {
       console.log(error);
     }
   };
 
+  const goToUpdateAddress = (idAddress) => {
+    navigation.navigate("add-address", { idAddress });
+  };
+
   return (
     <View style={styles.container}>
       {map(addresses, (address) => (
-        <View key={address._id} style={styles.address}>
-          <Text style={styles.title}>{address.title}</Text>
-          <Text>{address.name_lastname}</Text>
+        <View key={address.id} style={styles.address}>
+          <Text style={styles.title}>{address.attributes.title}</Text>
+          <Text>{address.attributes.name_lastname}</Text>
           <View style={styles.blockAddress}>
-            <Text>{address.address}, </Text>
-            <Text>{address.city}, </Text>
-            <Text>{address.district}</Text>
+            <Text>{address.attributes.address}, </Text>
+            <Text>{address.attributes.city}, </Text>
+            <Text>{address.attributes.district}</Text>
           </View>
-          <Text>Ref: {address.reference}</Text>
-          <Text>Tel: {address.phone}</Text>
+          <Text>Ref: {address.attributes.reference}</Text>
+          <Text>Tel: {address.attributes.phone}</Text>
           <View style={styles.actions}>
             <Button
               mode="contained"
               color={colors.primary}
               style={styles.button}
+              onPress={() => goToUpdateAddress(address.id)}
             >
               <AwesomeIcon name="edit" size={19} color={colors.dark} />
             </Button>
