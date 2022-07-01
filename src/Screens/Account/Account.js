@@ -28,7 +28,7 @@ export default function Account() {
     <>
       <StatusBar backgroundColor={colors.primary} />
       {!user ? (
-        <Loading size="large" />
+        <Loading text="Cargando Perfil" size="large" />
       ) : (
         <>
           <Search />

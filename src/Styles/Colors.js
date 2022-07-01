@@ -10,7 +10,10 @@ const colors = {
   //icons
   bgIcon: "#000957",
   //delete
-  deleteColor: "#F32424"
+  deleteColor: "#F32424",
+  //prices
+  priceNew: "#000000",
+  priceLast: "#7F8487",
 };
 
 export default colors;

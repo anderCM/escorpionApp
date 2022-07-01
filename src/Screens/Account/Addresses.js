@@ -2,6 +2,7 @@ import React, { useState, useCallback } from "react";
 import {
   StyleSheet,
   View,
+  Image,
   ScrollView,
   Text,
   TouchableOpacity,
@@ -15,6 +16,7 @@ import AddressList from "../../Components/Address/AddressList";
 import useAuth from "../../Hooks/useAuth";
 import Loading from "../../Components/Loading";
 import colors from "../../Styles/Colors";
+import noHome from "../../../assets/homeIcon.png";
 
 export default function Addresses() {
   const [addresses, setAddresses] = useState(null);
@@ -47,7 +49,10 @@ export default function Addresses() {
           size="large"
         />
       ) : size(addresses) === 0 ? (
-        <Text style={styles.noAddressText}>Crea tu Primera dirección</Text>
+        <View>
+          <Image style={styles.homeIcon} source={noHome} />
+          <Text style={styles.noAddressText}>Crea tu Primera dirección</Text>
+        </View>
       ) : (
         <AddressList
           addresses={addresses}
@@ -83,5 +88,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginTop: 10,
     textAlign: "center",
+  },
+  homeIcon: {
+    marginTop: 20,
+    width: "100%",
+    height: 350,
+    resizeMode: "contain",
+    marginBottom: 20,
   },
 });

@@ -81,7 +81,7 @@ export default function AddressList({ addresses, setReloadAddresses }) {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 50,
+    marginTop: 20,
   },
   address: {
     borderWidth: 0.9,

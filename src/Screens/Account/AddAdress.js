@@ -30,18 +30,16 @@ export default function AddAdress({ route }) {
           auth,
           route.params.idAddress
         );
+        console.log(response);
         const data = response.data;
-        await formik.setFieldValue("id", data.id);
-        await formik.setFieldValue("title", data.attributes.title);
-        await formik.setFieldValue(
-          "name_lastname",
-          data.attributes.name_lastname
-        );
-        await formik.setFieldValue("address", data.attributes.address);
-        await formik.setFieldValue("city", data.attributes.city);
-        await formik.setFieldValue("district", data.attributes.district);
-        await formik.setFieldValue("phone", data.attributes.phone);
-        await formik.setFieldValue("reference", data.attributes.reference);
+        formik.setFieldValue("id", data.id);
+        formik.setFieldValue("title", data.attributes.title);
+        formik.setFieldValue("name_lastname", data.attributes.name_lastname);
+        formik.setFieldValue("address", data.attributes.address);
+        formik.setFieldValue("city", data.attributes.city);
+        formik.setFieldValue("district", data.attributes.district);
+        formik.setFieldValue("phone", data.attributes.phone);
+        formik.setFieldValue("reference", data.attributes.reference);
       }
     })();
   }, [route.params]);
@@ -51,8 +49,10 @@ export default function AddAdress({ route }) {
     validationSchema: Yup.object(validationSchema()),
     onSubmit: async (formData) => {
       setLoading(true);
+
       try {
         if (newAddress) {
+          formData.user = auth.idUser;
           const response = await addAddressApi(auth, formData);
           if (response.error) throw "Error al agregar Dirección";
         } else {
@@ -64,9 +64,11 @@ export default function AddAdress({ route }) {
           position: Toast.positions.CENTER,
         });
       }
+      console.log(formData);
       setLoading(false);
     },
   });
+
   return (
     <KeyboardAwareScrollView extraScrollHeight={25}>
       <View style={styles.container}>

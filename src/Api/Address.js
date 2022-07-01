@@ -2,7 +2,7 @@ import { API_URL } from "../Utils/Constans";
 
 export async function getAddressesApi(auth) {
   try {
-    const url = `${API_URL}/addresses?user=${auth.idUser}`;
+    const url = `${API_URL}/addresses?filters[user][id][$eq]=${auth.idUser}`;
     const params = {
       headers: {
         "Content-Type": "application/json",
@@ -28,7 +28,6 @@ export async function addAddressApi(auth, address) {
         Authorization: `Bearer ${auth.token}`,
       },
       body: JSON.stringify({
-        user: auth.idUser,
         data: address,
       }),
     };
