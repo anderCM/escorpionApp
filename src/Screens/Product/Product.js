@@ -8,7 +8,9 @@ import Loading from "../../Components/Loading";
 import CarouselImage from "../../Components/Product/CarouselImage";
 import Price from "../../Components/Product/Price";
 import Quantity from "../../Components/Product/Quantity";
+import Buy from "../../Components/Product/Buy";
 import colors from "../../Styles/Colors";
+import Favorite from "../../Components/Product/Favorite";
 
 export default function Product({ route }) {
   const [product, setProduct] = useState(null);
@@ -39,7 +41,13 @@ export default function Product({ route }) {
               price={product.data.attributes.price}
               discount={product.data.attributes.discount}
             />
-            <Quantity quantity={quantity} setQuantity={setQuantity} />
+            <Quantity
+              quantity={quantity}
+              setQuantity={setQuantity}
+              product={product}
+            />
+            {/*             <Buy product={product} quantity={quantity} />
+            <Favorite product={product} /> */}
           </View>
         </ScrollView>
       )}
@@ -53,11 +61,11 @@ const styles = StyleSheet.create({
   },
   title: {
     fontWeight: "bold",
-    fontSize: 20,
+    textAlign: "center",
+    fontSize: 23,
     padding: 10,
   },
   containerView: {
     padding: 10,
-    paddingBottom: 200,
   },
 });

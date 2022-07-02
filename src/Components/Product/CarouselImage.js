@@ -9,6 +9,8 @@ const width = Dimensions.get("window").width;
 const height = 400;
 
 export default function CarouselImage({ images }) {
+  console.log("-------------------------------------------------------------------------------------------------")
+  console.log(images);
   const [imageActive, setimageActive] = useState(0);
   const renderItem = ({ item }) => {
     return (
@@ -48,4 +50,5 @@ const styles = StyleSheet.create({
     height,
     resizeMode: "contain",
   },
+
 });

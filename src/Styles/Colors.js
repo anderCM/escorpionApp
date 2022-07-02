@@ -9,6 +9,7 @@ const colors = {
   bgDark: "#D6AD2D",
   //icons
   bgIcon: "#000957",
+  bgLove: "#F24C4C",
   //delete
   deleteColor: "#F32424",
   //prices

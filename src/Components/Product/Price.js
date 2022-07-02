@@ -14,24 +14,25 @@ export default function Price({ price, discount }) {
     <View>
       {discount && (
         <View style={styles.containerData}>
-          <Text style={styles.dataText}>Precio Recomendado:</Text>
-          <Text style={[styles.dataValue, styles.oldPrice]}>S/. {price.toFixed(2)}</Text>
+          <Text style={styles.dataText}>Antes:</Text>
+          <View style={{ flexDirection: "row" }}>
+            <Text style={[styles.dataValue, styles.oldPrice]}>
+              S/. {price.toFixed(2)}
+            </Text>
+            {discount && (
+              <Text style={[styles.dataValue, styles.dataSave]}>
+                ({discount})%
+              </Text>
+            )}
+          </View>
         </View>
       )}
       <View style={styles.containerData}>
-        <Text style={styles.dataText}>Precio:</Text>
+        <Text style={styles.dataText}>{discount ? "Ahora" : "Precio"}:</Text>
         <Text style={[styles.dataValue, styles.currentPrice]}>
           S/. {calcPrice(price, discount)}
         </Text>
       </View>
-      {discount && (
-        <View style={styles.containerData}>
-          <Text style={styles.dataText}>Ahorras:</Text>
-          <Text style={[styles.dataValue, styles.dataSave]}>
-            S/. {((price * discount) / 100).toFixed(2)} ({discount})%
-          </Text>
-        </View>
-      )}
     </View>
   );
 }
@@ -39,18 +40,19 @@ export default function Price({ price, discount }) {
 const styles = StyleSheet.create({
   containerData: {
     flexDirection: "row",
-    alignItems: "center",
+    justifyContent: "space-between",
+    /*  alignItems: "center", */
     paddingVertical: 5,
   },
   dataText: {
-    width: "50%",
+    /*  width: "50%", */
     fontSize: 18,
     color: "#747474",
-    textAlign: "right",
+    /*     textAlign: "right", */
   },
   dataValue: {
-    width: "50%",
-    fontSize: 18,
+    /* width: "50%", */
+    fontSize: 16,
     paddingLeft: 5,
   },
   oldPrice: {
@@ -58,11 +60,13 @@ const styles = StyleSheet.create({
     color: colors.priceLast,
   },
   currentPrice: {
-    fontSize: 23,
+    fontSize: 25,
     fontWeight: "bold",
     color: colors.priceNew,
   },
   dataSave: {
-    color: "#bc0e0d",
+    fontSize: 14,
+    paddingLeft: 5,
+    color: colors.priceLast,
   },
 });

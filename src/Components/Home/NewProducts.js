@@ -24,7 +24,7 @@ export default function NewProducts() {
 const styles = StyleSheet.create({
   container: {
     padding: 10,
-    marginTop: 20,
+    marginTop:10
   },
   title: {
     fontWeight: "bold",
