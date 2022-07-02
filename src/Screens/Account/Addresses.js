@@ -92,8 +92,9 @@ const styles = StyleSheet.create({
   homeIcon: {
     marginTop: 20,
     width: "100%",
-    height: 350,
+    height: 250,
     resizeMode: "contain",
     marginBottom: 20,
+    opacity:.5
   },
 });

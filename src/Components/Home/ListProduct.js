@@ -5,6 +5,7 @@ import {
   StyleSheet,
   Image,
   TouchableWithoutFeedback,
+  TouchableOpacity,
 } from "react-native";
 import { map } from "lodash";
 import { useNavigation } from "@react-navigation/native";
@@ -59,10 +60,12 @@ const styles = StyleSheet.create({
   product: {
     padding: 10,
     backgroundColor: "#f0f0f0",
+    borderRadius: 20,
   },
   image: {
     height: 150,
     resizeMode: "contain",
+    borderRadius: 20,
   },
   name: {
     marginTop: 15,

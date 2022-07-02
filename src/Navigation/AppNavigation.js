@@ -19,8 +19,8 @@ export default function AppNavigation() {
         activeColor="#000957"
         barStyle={styles.navigaton}
         screenOptions={({ route }) => ({
-          tabBarIcon: (routeStatus) => {
-            return setIcon(route, routeStatus);
+          tabBarIcon: (color) => {
+            return setIcon(route, color);
           },
         })}
       >

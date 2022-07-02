@@ -6,7 +6,6 @@ import { useFormik } from "formik";
 import { useNavigation } from "@react-navigation/native";
 import * as Yup from "yup";
 import Toast from "react-native-root-toast";
-
 import useAuth from "../../Hooks/useAuth";
 import { FormStyle } from "../../Styles";
 import {
@@ -140,6 +139,7 @@ export default function AddAdress({ route }) {
           mode="contained"
           style={[FormStyle.btnSuccess, styles.btnSuccess]}
           onPress={formik.handleSubmit}
+          /* labelStyle={FormStyle.btnTextLabel} */
           loading={loading}
         >
           {newAddress ? "Agregar Dirección" : "Actualizar Dirección"}
@@ -180,6 +180,8 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     paddingVertical: 20,
+    textAlign:"center",
+    fontWeight:"bold"
   },
   btnSuccess: {
     marginBottom: 20,
