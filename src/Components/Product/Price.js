@@ -2,14 +2,9 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 
 import colors from "../../Styles/Colors";
+import CalcPrice from "./CalcPrice";
 
 export default function Price({ price, discount }) {
-  const calcPrice = (price, discount) => {
-    if (!discount) return price.toFixed(2);
-    const discountAmount = (price * discount) / 100;
-    return (price - discountAmount).toFixed(2);
-  };
-
   return (
     <View>
       {discount && (
@@ -30,7 +25,7 @@ export default function Price({ price, discount }) {
       <View style={styles.containerData}>
         <Text style={styles.dataText}>{discount ? "Ahora" : "Precio"}:</Text>
         <Text style={[styles.dataValue, styles.currentPrice]}>
-          S/. {calcPrice(price, discount)}
+          S/. {CalcPrice(price, discount)}
         </Text>
       </View>
     </View>
