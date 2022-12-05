@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "escorpionApp",
+    "name": "Textiles El Rey Escorpión",
     "slug": "escorpionApp",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -9,7 +9,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#FAC213"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -21,13 +21,20 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "ecommerce.reyescorpion",
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
+        "backgroundColor": "#FAC213"
       }
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "e3cca822-0859-48ca-a79a-c2aa64e446e2"
+      }
     }
   }
 }

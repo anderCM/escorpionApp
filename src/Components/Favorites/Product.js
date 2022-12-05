@@ -16,6 +16,7 @@ import { deleteFavoriteApi } from "../../Api/Favorite";
 import { SERVER_RESOURCERS } from "../../Utils/Constans";
 import colors from "../../Styles/Colors";
 import CalcPrice from "../Product/CalcPrice";
+import { size } from "../../Styles/sizes";
 
 export default function Product({ product, setReloadFavorites }) {
   const [loading, setLoading] = useState(false);
@@ -31,9 +32,6 @@ export default function Product({ product, setReloadFavorites }) {
     setLoading(true);
     try {
       await deleteFavoriteApi(auth, id);
-      /* Toast.show("Eliminado de Favoritos", {
-        position: Toast.positions.CENTER,
-      }); */
       setReloadFavorites(true);
     } catch (error) {
       console.log(error);
@@ -45,18 +43,17 @@ export default function Product({ product, setReloadFavorites }) {
   };
 
   return (
-    <View style={styles.product}>
+    <TouchableOpacity
+      style={styles.product}
+      onPress={() => goToProduct(product.attributes.product.data.id)}
+    >
       <View style={styles.containerImage}>
-        <TouchableOpacity
-          onPress={() => goToProduct(product.attributes.product.data.id)}
-        >
-          <Image
-            style={styles.image}
-            source={{
-              uri: `${SERVER_RESOURCERS}${preFix.images.data[0].attributes.formats.medium.url}`,
-            }}
-          />
-        </TouchableOpacity>
+        <Image
+          style={styles.image}
+          source={{
+            uri: `${SERVER_RESOURCERS}${preFix.images.data[0].attributes.formats.medium.url}`,
+          }}
+        />
       </View>
       <View style={styles.info}>
         <View>
@@ -83,14 +80,14 @@ export default function Product({ product, setReloadFavorites }) {
           <IconButton
             icon="eye-plus"
             color="#000"
-            size={24}
+            size={size.helpingIcons}
             style={{ backgroundColor: colors.primary }}
             onPress={() => goToProduct(product.attributes.product.data.id)}
           />
           <IconButton
             icon="delete"
             color="#000"
-            size={24}
+            size={size.helpingIcons}
             style={{ backgroundColor: colors.bgLove }}
             onPress={() => deleteFavorite(product.attributes.product.data.id)}
           />
@@ -101,7 +98,7 @@ export default function Product({ product, setReloadFavorites }) {
           <ActivityIndicator size="large" color={colors.primary} />
         </View>
       )}
-    </View>
+    </TouchableOpacity>
   );
 }
 
@@ -117,14 +114,14 @@ const styles = StyleSheet.create({
   },
   containerImage: {
     width: "40%",
-    height: 200,
+    height: 170,
     backgroundColor: "#ebebeb",
     padding: 5,
     borderRadius: 20,
   },
   image: {
     height: "100%",
-    resizeMode: "contain",
+    resizeMode: "stretch",
     borderRadius: 20,
   },
   info: {
@@ -146,8 +143,8 @@ const styles = StyleSheet.create({
     alignItems: "flex-end",
   },
   currentPrice: {
-    fontSize: 22,
-    fontWeight: "bold",
+    fontSize: 18,
+    color: "#b12704",
   },
   oldPrice: {
     marginLeft: 7,

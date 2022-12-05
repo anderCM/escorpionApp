@@ -2,14 +2,24 @@ import React from "react";
 import { View, StyleSheet } from "react-native";
 import { Button } from "react-native-paper";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import Toast from "react-native-root-toast";
 
 import colors from "../../Styles/Colors";
+import { addProductCartApi, getProductCartApi } from "../../Api/Cart";
 
 export default function Buy({ product, quantity }) {
-  const addProductCart = () => {
-    console.log("Product Añadido");
-    console.log(product.data.attributes.title);
-    console.log(quantity);
+
+  const addProductCart = async () => {
+    const response = await addProductCartApi(product.data.id, quantity);
+    if (response) {
+      Toast.show("Agregado al carrito!", {
+        position: Toast.positions.CENTER,
+      });
+    } else {
+      Toast.show("Error al añadir al carrito", {
+        position: Toast.positions.CENTER,
+      });
+    }
   };
 
   return (
@@ -36,7 +46,7 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     width: 60,
     height: 60,
-    borderRadius: 30, 
+    borderRadius: 30,
     textAlign: "center",
   },
 });

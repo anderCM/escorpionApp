@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Image, StyleSheet, Dimensions } from "react-native";
-import Carousel, { Pagination } from "react-native-snap-carousel";
+/* import Carousel, { Pagination } from "react-native-snap-carousel"; */
+import Carousel from "react-native-reanimated-carousel";
 import { size } from "lodash";
 
 import { SERVER_RESOURCERS } from "../../Utils/Constans";
@@ -23,9 +24,22 @@ export default function CarouselImage({ images }) {
 
   return (
     <>
-      <Carousel
+    <Carousel
+        loop
+        width={width}
+        height={height}
+        autoPlay={false}
+        data={images}
+        scrollAnimationDuration={500}
+        onSnapToItem={(i) => setimageActive(i)}
+        renderItem={renderItem}
+        panGestureHandlerProps={{
+          activeOffsetX: [-10, 10],
+        }}
+      />
+{/*       <Carousel
         layout="stack"
-        layoutCardOffset={`0`}
+        layoutCardOffset={0}
         data={images}
         sliderWidth={width}
         itemWidth={width}
@@ -38,7 +52,7 @@ export default function CarouselImage({ images }) {
         activeDotIndex={imageActive}
         inactiveDotOpacity={0.4}
         inactiveDotScale={0.9}
-      />
+      /> */}
     </>
   );
 }

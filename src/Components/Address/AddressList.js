@@ -1,13 +1,14 @@
 import React from "react";
 import { View, Text, StyleSheet, Alert } from "react-native";
-import { Button } from "react-native-paper";
+import { IconButton } from "react-native-paper";
 import { map } from "lodash";
 import { useNavigation } from "@react-navigation/native";
-import AwesomeIcon from "react-native-vector-icons/FontAwesome";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import useAuth from "../../Hooks/useAuth";
 import { deleteAddressApi } from "../../Api/Address";
 import colors from "../../Styles/Colors";
+import { size } from "../../Styles/sizes";
 
 export default function AddressList({ addresses, setReloadAddresses }) {
   const { auth } = useAuth();
@@ -46,32 +47,66 @@ export default function AddressList({ addresses, setReloadAddresses }) {
     <View style={styles.container}>
       {map(addresses, (address) => (
         <View key={address.id} style={styles.address}>
-          <Text style={styles.title}>{address.attributes.title}</Text>
-          <Text>{address.attributes.name_lastname}</Text>
+          <Text style={styles.title}>
+            <MaterialCommunityIcons
+              name="google-maps"
+              size={17}
+              color={colors.primary}
+            />{" "}
+            {address.attributes.title}
+          </Text>
+          <Text>
+            <MaterialCommunityIcons
+              name="account-child"
+              size={17}
+              color={colors.primary}
+            />{" "}
+            {address.attributes.name_lastname}
+          </Text>
           <View style={styles.blockAddress}>
-            <Text>{address.attributes.address}, </Text>
+            <Text>
+              <MaterialCommunityIcons
+                name="sign-direction"
+                size={17}
+                color={colors.primary}
+              />{" "}
+              {address.attributes.address},{" "}
+            </Text>
             <Text>{address.attributes.city}, </Text>
             <Text>{address.attributes.district}</Text>
           </View>
-          <Text>Ref: {address.attributes.reference}</Text>
-          <Text>Tel: {address.attributes.phone}</Text>
-          <View style={styles.actions}>
-            <Button
-              mode="contained"
+          <Text>
+            <MaterialCommunityIcons
+              name="directions"
+              size={17}
               color={colors.primary}
-              style={styles.button}
+            />{" "}
+            Ref: {address.attributes.reference}
+          </Text>
+          <Text>
+            <MaterialCommunityIcons
+              name="cellphone"
+              size={17}
+              color={colors.primary}
+            />{" "}
+            Tel: {address.attributes.phone}
+          </Text>
+          <View style={styles.actions}>
+            <IconButton
+              icon="home-edit"
+              color="#000"
+              size={size.helpingIcons}
+              style={{ backgroundColor: colors.primary }}
               onPress={() => goToUpdateAddress(address.id)}
-            >
-              <AwesomeIcon name="edit" size={19} color={colors.dark} />
-            </Button>
-            <Button
-              mode="contained"
-              color={colors.deleteColor}
-              style={styles.button}
+            />
+
+            <IconButton
+              icon="delete"
+              color="#000"
+              size={size.helpingIcons}
+              style={{ backgroundColor: colors.bgLove }}
               onPress={() => deleteAddressAlert(address)}
-            >
-              <AwesomeIcon name="trash-o" size={19} color={colors.dark} />
-            </Button>
+            />
           </View>
         </View>
       ))}

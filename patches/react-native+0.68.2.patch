@@ -1,0 +1,38 @@
+diff --git a/node_modules/react-native/index.js b/node_modules/react-native/index.js
+index e594bbe..b0b2651 100644
+--- a/node_modules/react-native/index.js
++++ b/node_modules/react-native/index.js
+@@ -444,7 +444,9 @@ module.exports = {
+         'LogBox is enabled by default so there is no need to call unstable_enableLogBox() anymore. This is a no op and will be removed in the next version.',
+       );
+   },
+-  // Deprecated Prop Types
++
++  //To avoid View-prop-types warning Anderson_dev
++/*   // Deprecated Prop Types
+   get ColorPropType(): $FlowFixMe {
+     console.warn(
+       'ColorPropType will be removed from React Native. Migrate to ' +
+@@ -473,8 +475,21 @@ module.exports = {
+     );
+     return require('deprecated-react-native-prop-types').ViewPropTypes;
+   },
++}; */
++// Deprecated Prop Types
++get ColorPropType(): $FlowFixMe {
++  return require("deprecated-react-native-prop-types").ColorPropType
++},
++get EdgeInsetsPropType(): $FlowFixMe {
++  return require("deprecated-react-native-prop-types").EdgeInsetsPropType
++},
++get PointPropType(): $FlowFixMe {
++  return require("deprecated-react-native-prop-types").PointPropType
++},
++get ViewPropTypes(): $FlowFixMe {
++  return require("deprecated-react-native-prop-types").ViewPropTypes
++},
+ };
+-
+ if (__DEV__) {
+   /* $FlowFixMe[prop-missing] This is intentional: Flow will error when
+    * attempting to access ART. */

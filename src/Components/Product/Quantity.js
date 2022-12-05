@@ -23,6 +23,7 @@ export default function Quantity({ quantity, setQuantity, product }) {
         value={value}
         items={items}
         language="ES"
+        listMode="SCROLLVIEW"
         setOpen={setOpen}
         setValue={setValue}
         setItems={setItems}

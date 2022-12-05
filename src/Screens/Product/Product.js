@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
-import { Button } from "react-native-paper";
+import { View, Text, StyleSheet, ScrollView, Dimensions } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { getProductApi } from "../../Api/Product";
@@ -126,7 +125,7 @@ const styles = StyleSheet.create({
   moreInfoContainer: {
     flexDirection: "row",
     justifyContent: "space-around",
-    paddingVertical:10
+    paddingVertical: 10,
   },
   textSize: {
     fontSize: 20,

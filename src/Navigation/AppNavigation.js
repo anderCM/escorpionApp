@@ -5,10 +5,11 @@ import { createMaterialBottomTabNavigator } from "@react-navigation/material-bot
 import AwesomeIcon from "react-native-vector-icons/FontAwesome";
 
 import AccountStack from "./AccountStack";
-import ProductStack from "./ProductStack";
+import ProductStack from "./ProductStack";  
 import colors from "../Styles/Colors";
 import Favorites from "../Screens/Favorites";
-import Cart from "../Screens/Cart";
+/* import Cart from "../Screens/Cart"; */
+import PaymentStack from "./PaymentStack";
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -35,8 +36,8 @@ export default function AppNavigation() {
           options={{ title: "Favoritos" }}
         />
         <Tab.Screen
-          name="cart"
-          component={Cart}
+          name="payment"
+          component={PaymentStack}
           options={{ title: "Carrito" }}
         />
         <Tab.Screen
@@ -58,7 +59,7 @@ function setIcon(route, routeStatus) {
     case "favorites":
       iconName = "heart";
       break;
-    case "cart":
+    case "payment":
       iconName = "shopping-cart";
       break;
     case "accountApp":

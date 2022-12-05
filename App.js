@@ -1,6 +1,5 @@
-import 'react-native-gesture-handler';
+import "react-native-gesture-handler";
 import React, { useState, useMemo, useEffect } from "react";
-import { Text, View, Button } from "react-native";
 import { Provider as PaperProvider } from "react-native-paper";
 import jwtDecode from "jwt-decode";
 
@@ -30,7 +29,7 @@ export default function App() {
     setTokenApi(user.jwt);
     setAuth({
       token: user.jwt,
-      idUser: user.user._id,
+      idUser: user.user.id,
     });
   };
 

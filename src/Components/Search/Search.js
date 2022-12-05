@@ -64,7 +64,7 @@ export default function Search({ currentSearch }) {
         />
         <Animated.View style={[inputAnimation, { width: inputAnimationWidth }]}>
           <Searchbar
-            placeholder="Buscar Producto"
+            placeholder="Buscar en Textiles Rey Escorpión"
             onFocus={openSearch}
             value={searchQuery}
             onChangeText={onChangeSearch}

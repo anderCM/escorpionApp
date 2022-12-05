@@ -63,7 +63,6 @@ export default function AddAdress({ route }) {
           position: Toast.positions.CENTER,
         });
       }
-      console.log(formData);
       setLoading(false);
     },
   });

@@ -1,11 +1,5 @@
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  KeyboardAvoidingView,
-} from "react-native";
+import { View, StyleSheet, Image, KeyboardAvoidingView } from "react-native";
 
 import RegisterForm from "../Components/Auth/RegisterForm";
 import LoginForm from "../Components/Auth/LoginForm";

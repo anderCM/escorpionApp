@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import {
   View,
-  Text,
   StyleSheet,
   Image,
   Dimensions,
   TouchableWithoutFeedback,
 } from "react-native";
 import { getBannersApi } from "../../Api/HomeBanner";
-import Carousel, { Pagination } from "react-native-snap-carousel";
+/* import Carousel, { Pagination } from "react-native-snap-carousel"; */
+import Carousel from "react-native-reanimated-carousel";
 import { size } from "lodash";
 import { useNavigation } from "@react-navigation/native";
 
@@ -18,7 +18,7 @@ const width = Dimensions.get("window").width;
 const height = 160;
 
 export default function Banner() {
-  const [banners, setBanners] = useState(null);
+  const [banners, setBanners] = useState([]);
   const [banneActive, setBanneActive] = useState(0);
   const navigation = useNavigation();
 
@@ -29,11 +29,8 @@ export default function Banner() {
     })();
   }, []);
 
-  const goToProduct = (id) => {
-    navigation.push("product", { idProduct: id });
-  };
+  /*   if (!banners) return null; */
 
-  if (!banners) return null;
   const renderItem = ({ item }) => {
     return (
       <TouchableWithoutFeedback
@@ -48,10 +45,26 @@ export default function Banner() {
       </TouchableWithoutFeedback>
     );
   };
+  const goToProduct = (id) => {
+    navigation.push("product", { idProduct: id });
+  };
 
   return (
     <View style={styles.container}>
       <Carousel
+        loop
+        width={width}
+        height={height}
+        autoPlay={true}
+        data={banners}
+        scrollAnimationDuration={2000}
+        onSnapToItem={(i) => setBanneActive(i)}
+        renderItem={renderItem}
+        panGestureHandlerProps={{
+          activeOffsetX: [-10, 10],
+        }}
+      />
+      {/*       <Carousel
         layout="default"
         data={banners}
         sliderWidth={width}
@@ -62,7 +75,8 @@ export default function Banner() {
         autoplay={true}
         autoplayInterval={5000}
         autoplayDelay={2000}
-      />
+        slideStyle={1}
+      /> 
       <Pagination
         dotsLength={size(banners)}
         activeDotIndex={banneActive}
@@ -70,8 +84,9 @@ export default function Banner() {
         inactiveDotScale={0.6}
         containerStyle={styles.dotsContainer}
         dotStyle={styles.dot}
-        inactiveDotColor={styles.dot}
-      />
+        dotColor={styles.dot.backgroundColor}
+        inactiveDotColor={styles.dot.backgroundColor}
+      />*/}
     </View>
   );
 }

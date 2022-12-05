@@ -1,4 +1,3 @@
-import { StyleSheet } from "react-native";
 const colors = {
   primary: "#FAC213",
   dark: "#000",
