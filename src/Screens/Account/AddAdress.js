@@ -29,7 +29,6 @@ export default function AddAdress({ route }) {
           auth,
           route.params.idAddress
         );
-        console.log(response);
         const data = response.data;
         formik.setFieldValue("id", data.id);
         formik.setFieldValue("title", data.attributes.title);

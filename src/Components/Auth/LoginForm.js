@@ -20,7 +20,6 @@ export default function LoginForm({ changeForm }) {
       setLoading(true);
       try {
         const response = await LoginApi(formData);
-        console.log(response);
         if (response.error) throw "Usuario o contraseña inválido";
         login(response);
       } catch (error) {

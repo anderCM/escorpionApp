@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import { Text, ScrollView, StyleSheet } from "react-native";
+import { Text, View, ScrollView, StyleSheet, Image } from "react-native";
 import StatusBar from "../../Components/StatusBar";
 import { useFocusEffect } from "@react-navigation/native";
 import { size } from "lodash";
@@ -8,7 +8,7 @@ import Loading from "../../Components/Loading";
 import ListOrder from "../../Components/Order/ListOrder";
 import useAuth from "../../Hooks/useAuth";
 import { getOrdersApi } from "../../Api/Orders";
-import colors from "../../Styles/Colors";
+import favoriteBox from "../../../assets/favorite.png";
 
 export default function Orders() {
   const [orders, setOrders] = useState(null);
@@ -27,13 +27,14 @@ export default function Orders() {
       <StatusBar />
       <ScrollView style={styles.container}>
         {!orders ? (
-          <Loading
-            text="Cargando Pedidos"
-            size="large"
-            color={colors.primary}
-          />
+          <Loading text="Cargando Pedidos" size="large" />
         ) : size(orders) == 0 ? (
-          <Text style={styles.noOrderText}>No tienes pedidos</Text>
+          <View style={styles.noOrderContainer}>
+            <Image style={styles.orderIcon} source={favoriteBox} />
+            <Text style={{ textAlign: "center" }}>
+              Aún no tienes pedidos realizados
+            </Text>
+          </View>
         ) : (
           <ListOrder orders={orders} />
         )}
@@ -48,5 +49,17 @@ const styles = StyleSheet.create({
     textAlign: "center",
     paddingTop: 20,
     fontSize: 18,
+  },
+  noOrderContainer: {
+    paddingVertical: 20,
+    paddingHorizontal: 10,
+  },
+  orderIcon: {
+    marginTop: 20,
+    width: "100%",
+    height: 250,
+    resizeMode: "contain",
+    marginBottom: 20,
+    opacity: 0.5,
   },
 });

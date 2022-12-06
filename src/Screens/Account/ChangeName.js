@@ -36,7 +36,6 @@ export default function ChangeName() {
       setLoading(true);
       try {
         const rpta = await updateUserApi(auth, formData);
-        console.log(rpta);
         Toast.show("Datos actualizados correctamente", {
           position: Toast.positions.CENTER,
         });

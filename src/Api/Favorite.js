@@ -46,7 +46,6 @@ export async function deleteFavoriteApi(auth, idProduct) {
     const dataFound = await isFavoriteApi(auth, idProduct);
     if (size(dataFound.data) > 0) {
       const url = `${API_URL}/favorites/${dataFound.data[0].id}`;
-      /* console.log(url); */
       const params = {
         method: "DELETE",
         header: {

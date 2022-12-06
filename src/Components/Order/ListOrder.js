@@ -5,8 +5,6 @@ import { map } from "lodash";
 import Order from "./Order";
 
 export default function ListOrder({ orders }) {
-    /* console.log("+++++++++++++++++++++++++++++++++++++++++++++++++");
-    console.log(orders); */
   return (
     <View style={styles.container}>
       {map(orders, (order) => (

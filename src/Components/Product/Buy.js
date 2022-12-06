@@ -25,7 +25,6 @@ export default function Buy({ product, quantity }) {
   return (
     <View style={styles.container}>
       <Button
-        onLongPress={() => console.log("asdsa")}
         contentStyle={styles.btnBuyContent}
         labelStyle={styles.btnLabel}
         onPress={addProductCart}

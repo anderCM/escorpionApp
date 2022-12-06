@@ -22,7 +22,6 @@ export default function Favorite({ product }) {
   useEffect(() => {
     (async () => {
       const response = await isFavoriteApi(auth, product.data.id);
-      /*       console.log(response); */
       if (size(response.data) == 0) setIsFavorite(false);
       else setIsFavorite(true);
       setDisabledFav(false);

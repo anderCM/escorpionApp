@@ -54,7 +54,6 @@ export default function Cart({ route }) {
             products,
             route.params.address
           );
-          console.log(response);
           if (size(response) > 0) {
             await deleteCartApi();
             navigation.navigate("accountApp", { screen: "my-orders" });
