@@ -4,17 +4,18 @@ import { useFocusEffect } from "@react-navigation/native";
 import { size } from "lodash";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import Toast from "react-native-root-toast";
+import { useNavigation } from "@react-navigation/native";
 
 import useAuth from "../../Hooks/useAuth";
-import { getProductCartApi } from "../../Api/Cart";
+import { getProductCartApi, savePayment, deleteCartApi } from "../../Api/Cart";
 import StatusBarCustom from "../../Components/StatusBar";
-import colors from "../../Styles/Colors";
+import Search from "../../Components/Search/Search";
 import NotProducts from "../../Components/Cart/NotProducts";
 import ProductList from "../../Components/Cart/ProductList";
 import { getAddressesApi } from "../../Api/Address";
 import AdressList from "../../Components/Cart/AdressList";
 import Payment from "../../Components/Cart/Payment";
-import { savePayment } from "../../Api/Cart";
+import colors from "../../Styles/Colors";
 
 export default function Cart({ route }) {
   const [cart, setCart] = useState(null);
@@ -25,6 +26,7 @@ export default function Cart({ route }) {
   const [totalPayment, setTotalPayment] = useState(null);
   const [paymentStatus, setPaymentStatus] = useState(false);
 
+  const navigation = useNavigation();
   const { auth } = useAuth();
 
   useFocusEffect(
@@ -53,6 +55,14 @@ export default function Cart({ route }) {
             route.params.address
           );
           console.log(response);
+          if (size(response) > 0) {
+            await deleteCartApi();
+            navigation.navigate("accountApp", { screen: "my-orders" });
+          } else {
+            Toast.show("Error al realizar el pedido", {
+              position: Toast.positions.CENTER,
+            });
+          }
         })();
       }
       route.params.payment = false;
@@ -79,11 +89,15 @@ export default function Cart({ route }) {
         backgroundColor={colors.primary}
         barStyle="light-content"
       />
-      <Text style={styles.title}>Carrito de Compras</Text>
+
       {!cart || size(cart) === 0 ? (
-        <NotProducts />
+        <>
+          <Search />
+          <NotProducts />
+        </>
       ) : (
         <KeyboardAwareScrollView extraScrollHeight={25}>
+          <Text style={styles.title}>Carrito de Compras</Text>
           <ScrollView style={styles.cartContainer}>
             <ProductList
               cart={cart}

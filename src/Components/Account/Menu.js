@@ -69,10 +69,10 @@ export default function Menu() {
           title="Mis Pedidos"
           description="Todos los pedidos"
           left={(props) => <List.Icon {...props} icon="clipboard-list" />}
-          onPress={() => console.log("Ir a Pedidos")}
+          onPress={() => navigation.navigate("my-orders")}
         />
         <List.Item
-          title="Lista de deseo"
+          title="Lista de Favoritos"
           description="Todos tus productos Favoritos"
           left={(props) => <List.Icon {...props} icon="heart" />}
           onPress={() => navigation.navigate("favorites")}

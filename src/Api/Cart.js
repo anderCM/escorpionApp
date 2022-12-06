@@ -201,8 +201,19 @@ export async function savePayment(
         createUrl,
       }),
     };
-    const result = await fetch(url, params);
+    const response = await fetch(url, params);
+    const result = await response.json();
     return result;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+}
+
+export async function deleteCartApi() {
+  try {
+    await AsyncStorage.removeItem(SEARCH_CART);
+    return true;
   } catch (error) {
     console.log(error);
     return null;
