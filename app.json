@@ -14,14 +14,16 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
+    "scheme":"com.reyescorpion.ecommerce",
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.reyescorpion.ecommerce"
     },
     "android": {
-      "package": "ecommerce.reyescorpion",
+      "package": "com.reyescorpion.ecommerce",
       "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",

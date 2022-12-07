@@ -8,7 +8,6 @@ import AccountStack from "./AccountStack";
 import ProductStack from "./ProductStack";  
 import colors from "../Styles/Colors";
 import Favorites from "../Screens/Favorites";
-/* import Cart from "../Screens/Cart"; */
 import PaymentStack from "./PaymentStack";
 
 const Tab = createMaterialBottomTabNavigator();

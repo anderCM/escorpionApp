@@ -1,9 +1,11 @@
-import React, { useState } from "react";
-import { View } from "react-native";
+import React, { useState, useEffect } from "react";
+import { View, Text, StyleSheet } from "react-native";
 import { TextInput, Button } from "react-native-paper";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import * as Google from "expo-auth-session/providers/google";
 import Toast from "react-native-root-toast";
+import { googleUserInfo } from "../../Api/User";
 
 import { RegisterApi } from "../../Api/User";
 import { FormStyle } from "../../Styles";
@@ -61,6 +63,10 @@ export default function RegisterForm({ changeForm }) {
         theme={FormStyle.themeInput}
         placeholder="Ingresa una contraseña segura"
       />
+      <Text style={styles.passwordHelp}>
+        Almenos 8 caracteres, 1 Mayúscula, 1 minúscula, 1 número y un caracter
+        especial{" "}
+      </Text>
       <TextInput
         label="Repetir Contraseña"
         style={FormStyle.input}
@@ -104,9 +110,23 @@ function validationSchema() {
   return {
     email: Yup.string().email(true).required(true),
     username: Yup.string().required(true),
-    password: Yup.string().required(true),
+    password: Yup.string()
+      .required(true)
+      .matches(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+        "Almenos 8 caracteres, 1 Mayúscula, 1 minúscula, 1 número y un caracter especial"
+      ),
     repeatPassword: Yup.string()
       .required(true)
       .oneOf([Yup.ref("password")], true),
   };
 }
+
+const styles = StyleSheet.create({
+  passwordHelp: {
+    marginTop: -20,
+    marginBottom: 10,
+    fontSize: 11,
+    fontWeight: "bold",
+  },
+});

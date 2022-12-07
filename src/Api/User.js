@@ -76,3 +76,18 @@ export async function updateUserApi(auth, formData) {
     return null;
   }
 }
+
+export async function googleUserInfo(accessToken) {
+  try {
+    const response = await fetch("https://www.googleapis.com/oauth2/v2/userinfo", {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+}

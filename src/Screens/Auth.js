@@ -1,13 +1,25 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Image, KeyboardAvoidingView } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  Image,
+  KeyboardAvoidingView,
+} from "react-native";
+import * as WebBrowser from "expo-web-browser";
 
 import RegisterForm from "../Components/Auth/RegisterForm";
 import LoginForm from "../Components/Auth/LoginForm";
+import GoogleAuth from "../Components/Auth/GoogleAuth";
 import logo from "../../assets/logo.png";
 import { LayoutStyle } from "../Styles";
 
+
+WebBrowser.maybeCompleteAuthSession();
+
 export default function Auth() {
   const [showLogin, setShowLogin] = useState(true);
+
   const changeForm = () => setShowLogin(!showLogin);
 
   return (
@@ -21,6 +33,10 @@ export default function Auth() {
         ) : (
           <RegisterForm changeForm={changeForm} />
         )}
+        <View style={styles.oContainer}>
+          <Text>O</Text>
+        </View>
+        <GoogleAuth />
       </KeyboardAvoidingView>
     </View>
   );
@@ -32,5 +48,9 @@ const styles = StyleSheet.create({
     height: 100,
     resizeMode: "contain",
     marginBottom: 20,
+  },
+  oContainer: {
+    alignItems: "center",
+    marginVertical: 10,
   },
 });
