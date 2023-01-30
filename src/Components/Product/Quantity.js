@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Dimensions } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 import Buy from "./Buy";
 import Favorite from "./Favorite";
@@ -24,6 +24,16 @@ export default function Quantity({ quantity, setQuantity, product }) {
         items={items}
         language="ES"
         listMode="SCROLLVIEW"
+        dropDownDirection="TOP"
+/*         modalProps={{
+          animationType: "fade",
+        }}
+        modalTitle="Selecciona la cantidad"
+        modalContentContainerStyle={{
+          margin:"auto",
+          backgroundColor: "blue",
+          width:Dimensions.width,
+        }} */
         setOpen={setOpen}
         setValue={setValue}
         setItems={setItems}
@@ -54,6 +64,7 @@ const styles = StyleSheet.create({
   },
   itemStyle: {
     justifyContent: "flex-start",
+    borderColor:"red"
   },
   dropDownPicker: {
     backgroundColor: "#fafafa",

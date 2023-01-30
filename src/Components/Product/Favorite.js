@@ -81,11 +81,11 @@ export default function Favorite({ product }) {
         {isFavorite ? (
           <MaterialCommunityIcons
             name="heart-off-outline"
-            size={26}
+            size={20}
             color="#fff"
           />
         ) : (
-          <MaterialCommunityIcons name="heart-plus" size={26} color="black" />
+          <MaterialCommunityIcons name="heart-plus" size={20} color="black" />
         )}
       </Button>
     </View>

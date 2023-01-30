@@ -40,7 +40,7 @@ export default function AddressList({ addresses, setReloadAddresses }) {
   };
 
   const goToUpdateAddress = (idAddress) => {
-    navigation.navigate("add-address", { idAddress });
+    navigation.navigate("add-address", { idAddress, from: "addresses" });
   };
 
   return (

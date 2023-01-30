@@ -56,12 +56,12 @@ export default function Menu() {
           left={(props) => <List.Icon {...props} icon="key" />}
           onPress={() => navigation.navigate("change-password")}
         />
-        <List.Item
+        {/* <List.Item
           title="Mis direcciones"
           description="Administra tus direcciones de envío"
           left={(props) => <List.Icon {...props} icon="google-maps" />}
           onPress={() => navigation.navigate("addresses")}
-        />
+        /> */}
       </List.Section>
       <List.Section>
         <List.Subheader>Apps</List.Subheader>
@@ -78,11 +78,17 @@ export default function Menu() {
           onPress={() => navigation.navigate("favorites")}
         />
         <List.Item
+          title="Jr. Andahuaylas 256 - La Victoria"
+          description="Telf: 934 913 736"
+          left={(props) => <List.Icon {...props} icon="google-maps" />}
+        />
+        <List.Item
           title="Cerrar Sesión"
           description="Cierra esta Sesión"
           left={(props) => <List.Icon {...props} icon="logout" />}
           onPress={LogoutAccount}
         />
+
       </List.Section>
     </>
   );

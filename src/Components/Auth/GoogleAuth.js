@@ -4,11 +4,11 @@ import * as Google from "expo-auth-session/providers/google";
 import * as WebBrowser from "expo-web-browser";
 import { Button } from "react-native-paper";
 import Toast from "react-native-root-toast";
+import { makeRedirectUri } from "expo-auth-session";
 
 import { googleUserInfo, RegisterApi, LoginApi } from "../../Api/User";
 import useAuth from "../../Hooks/useAuth";
 import { FormStyle } from "../../Styles";
-import { makeRedirectUri } from "expo-auth-session";
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -16,7 +16,18 @@ export default function GoogleAuth() {
   const { login } = useAuth();
   const [request, fullResult, promptAsync] = Google.useAuthRequest(
     {
-     
+      expoClientId:
+        "yourOwnKey",
+      iosClientId:
+        "yourOwnKey",
+
+      androidClientId:
+        "yourOwnKey",
+      webClientId:
+        "yourOwnKey",
+      redirectUri: makeRedirectUri({
+        useProxy: true,
+      }),
     },
     {
       useProxy: true,
@@ -24,7 +35,7 @@ export default function GoogleAuth() {
   );
 
   const handleGoogleAuth = async () => {
-    const result = await promptAsync(/* { useProxy: true } */);
+    const result = await promptAsync();
     if (result?.type === "success") {
       const { authentication } = result;
       const token = authentication.accessToken;
@@ -38,17 +49,11 @@ export default function GoogleAuth() {
             password: id,
             repeatPassword: id,
           });
-          if (responseRegister.error) {
-            const responseLogin = await LoginApi({
-              identifier: email,
-              password: id,
-            });
-            login(responseLogin);
-            return;
-          }
-          Toast.show("Tu cuenta ha sido creada", {
-            position: Toast.positions.CENTER,
+          const loginFirst = await LoginApi({
+            identifier: email,
+            password: id,
           });
+          login(loginFirst);
         } catch (error) {
           Toast.show(error, {
             position: Toast.positions.CENTER,
@@ -64,20 +69,18 @@ export default function GoogleAuth() {
 
   return (
     <>
-      <>
-        <View>
-          <Button
-            icon="google"
-            mode="contained"
-            style={FormStyle.btnSuccess}
-            onPress={() => {
-              handleGoogleAuth();
-            }}
-          >
-            Ingresar con Google
-          </Button>
-        </View>
-      </>
+      <View>
+        <Button
+          icon="google"
+          mode="contained"
+          style={FormStyle.btnSuccess}
+          onPress={() => {
+            handleGoogleAuth();
+          }}
+        >
+          Ingresar con Google
+        </Button>
+      </View>
     </>
   );
 }

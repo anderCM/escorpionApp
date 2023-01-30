@@ -13,7 +13,7 @@ import Toast from "react-native-root-toast";
 
 import useAuth from "../../Hooks/useAuth";
 import { deleteFavoriteApi } from "../../Api/Favorite";
-import { SERVER_RESOURCERS } from "../../Utils/Constans";
+
 import colors from "../../Styles/Colors";
 import CalcPrice from "../Product/CalcPrice";
 import { size } from "../../Styles/sizes";
@@ -51,7 +51,7 @@ export default function Product({ product, setReloadFavorites }) {
         <Image
           style={styles.image}
           source={{
-            uri: `${SERVER_RESOURCERS}${preFix.images.data[0].attributes.formats.medium.url}`,
+            uri: `${preFix.images.data[0].attributes.formats.medium.url}`,
           }}
         />
       </View>

@@ -22,6 +22,7 @@ export default function AddAdress({ route }) {
 
   useEffect(() => {
     (async () => {
+
       if (route.params?.idAddress) {
         setNewAddress(false);
         navigation.setOptions({ title: "Actualizar Dirección" });
@@ -47,16 +48,17 @@ export default function AddAdress({ route }) {
     validationSchema: Yup.object(validationSchema()),
     onSubmit: async (formData) => {
       setLoading(true);
-
+      
       try {
         if (newAddress) {
           formData.user = auth.idUser;
+          /* console.log(formData); */
           const response = await addAddressApi(auth, formData);
           if (response.error) throw "Error al agregar Dirección";
         } else {
           await updateAddressApi(auth, formData);
         }
-        navigation.goBack();
+        navigation.navigate(route.params.from);
       } catch (error) {
         Toast.show(error, {
           position: Toast.positions.CENTER,
@@ -126,6 +128,7 @@ export default function AddAdress({ route }) {
         />
         <TextInput
           label="Teléfono"
+          keyboardType='numeric'
           style={FormStyle.input}
           theme={FormStyle.themeInput}
           placeholder="Ej: 987XXX123"
@@ -178,8 +181,8 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     paddingVertical: 20,
-    textAlign:"center",
-    fontWeight:"bold"
+    textAlign: "center",
+    fontWeight: "bold",
   },
   btnSuccess: {
     marginBottom: 20,

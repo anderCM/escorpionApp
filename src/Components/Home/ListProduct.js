@@ -1,16 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
   StyleSheet,
   Image,
   TouchableWithoutFeedback,
-  TouchableOpacity,
+  Button,
 } from "react-native";
 import { map } from "lodash";
 import { useNavigation } from "@react-navigation/native";
-
-import { SERVER_RESOURCERS } from "../../Utils/Constans";
 
 export default function ListProduct({ products }) {
   const navigation = useNavigation();
@@ -31,7 +29,7 @@ export default function ListProduct({ products }) {
               <Image
                 style={styles.image}
                 source={{
-                  uri: `${SERVER_RESOURCERS}${product.attributes.images.data[0].attributes.formats.small.url}`,
+                  uri: `${product.attributes.images.data[0].attributes.formats.small.url}`,
                 }}
               />
               <Text style={styles.name} numberOfLines={1} ellipsizeMode="tail">
@@ -55,7 +53,6 @@ const styles = StyleSheet.create({
   containerProduct: {
     width: "50%",
     padding: 3,
-    /* height: 200, */
   },
   product: {
     padding: 10,

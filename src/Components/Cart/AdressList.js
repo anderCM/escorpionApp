@@ -14,7 +14,12 @@ import { IconButton } from "react-native-paper";
 import Loading from "../Loading";
 import colors from "../../Styles/Colors";
 
-export default function AdressList({addresses,selectedAddress,setSelectedAddress}) {
+export default function AdressList({
+  addresses,
+  selectedAddress,
+  setSelectedAddress,
+  from,
+}) {
   const navigation = useNavigation();
   useEffect(() => {
     addresses && setSelectedAddress(addresses[0]);
@@ -26,26 +31,53 @@ export default function AdressList({addresses,selectedAddress,setSelectedAddress
       {!addresses ? (
         <Loading text="Cargando Direcciones" size="large" />
       ) : size(addresses) == 0 ? (
-        <TouchableOpacity onPress={() => navigation.navigate("accountApp", { screen: "add-address" })}>
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate("accountApp", {
+              screen: "add-address",
+              params: { from: from },
+            })
+          }
+        >
           <View style={styles.addAddress}>
             <Text style={styles.addressText}>Añadir una dirección</Text>
             <IconButton icon="arrow-right" color="#000" size={19} />
           </View>
         </TouchableOpacity>
       ) : (
-        map(addresses, (address,index) => (
-          <TouchableWithoutFeedback key={index} onPress={() => setSelectedAddress(address)}>
-            <View style={[styles.address, address.id == selectedAddress?.id && styles.checked ]}>
+        map(addresses, (address, index) => (
+          <TouchableWithoutFeedback
+            key={index}
+            onPress={() => setSelectedAddress(address)}
+          >
+            <View
+              style={[
+                styles.address,
+                address.id == selectedAddress?.id && styles.checked,
+              ]}
+            >
               <Text style={styles.title}>
-                <MaterialCommunityIcons name="google-maps" size={17} color={colors.primary} />{" "}
+                <MaterialCommunityIcons
+                  name="google-maps"
+                  size={17}
+                  color={colors.primary}
+                />{" "}
                 {address.attributes.title}
               </Text>
               <Text>
-                <MaterialCommunityIcons name="account-child" size={17} color={colors.primary} />
+                <MaterialCommunityIcons
+                  name="account-child"
+                  size={17}
+                  color={colors.primary}
+                />
                 Recibe: {address.attributes.name_lastname}
               </Text>
               <Text>
-                <MaterialCommunityIcons name="sign-direction" size={17} color={colors.primary} />
+                <MaterialCommunityIcons
+                  name="sign-direction"
+                  size={17}
+                  color={colors.primary}
+                />
                 {address.attributes.address}
               </Text>
               <View style={styles.blockLine}>

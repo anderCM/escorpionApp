@@ -11,6 +11,7 @@ import * as WebBrowser from "expo-web-browser";
 import RegisterForm from "../Components/Auth/RegisterForm";
 import LoginForm from "../Components/Auth/LoginForm";
 import GoogleAuth from "../Components/Auth/GoogleAuth";
+/* import FacebookAuth from "../Components/Auth/FacebookAuth"; */
 import logo from "../../assets/logo.png";
 import { LayoutStyle } from "../Styles";
 
@@ -24,7 +25,7 @@ export default function Auth() {
 
   return (
     <View style={LayoutStyle.container}>
-      <Image style={styles.logo} source={logo} />
+      <Image style={styles.logo} source={{uri:"https://storage.googleapis.com/bucket-strapi-e-commerce/logo_894fe1d637/logo_894fe1d637.jpeg?updated_at=2023-01-17T13:38:19.651Z"}} />
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
       >
@@ -37,6 +38,7 @@ export default function Auth() {
           <Text>O</Text>
         </View>
         <GoogleAuth />
+        {/* <FacebookAuth /> */}
       </KeyboardAvoidingView>
     </View>
   );

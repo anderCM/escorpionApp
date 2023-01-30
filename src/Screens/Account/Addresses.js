@@ -36,7 +36,11 @@ export default function Addresses() {
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.title}>Direcciones</Text>
-      <TouchableOpacity onPress={() => navigation.navigate("add-address")}>
+      <TouchableOpacity
+        onPress={() =>
+          navigation.navigate("add-address", { from: "addresses" })
+        }
+      >
         <View style={styles.addAddress}>
           <Text style={styles.addressText}>Añadir una dirección</Text>
           <IconButton icon="arrow-right" color="#000" size={19} />
@@ -95,6 +99,6 @@ const styles = StyleSheet.create({
     height: 250,
     resizeMode: "contain",
     marginBottom: 20,
-    opacity:.5
+    opacity: 0.5,
   },
 });

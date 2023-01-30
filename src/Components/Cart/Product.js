@@ -10,7 +10,6 @@ import {
 import { IconButton } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 
-import { SERVER_RESOURCERS } from "../../Utils/Constans";
 import colors from "../../Styles/Colors";
 import CalcPrice from "../Product/CalcPrice";
 import {
@@ -58,7 +57,7 @@ export default function Product({ product, setReloadCart }) {
         <Image
           style={styles.image}
           source={{
-            uri: `${SERVER_RESOURCERS}${product.data.attributes.images.data[0].attributes.formats.medium.url}`,
+            uri: `${product.data.attributes.images.data[0].attributes.formats.medium.url}`,
           }}
         />
       </View>

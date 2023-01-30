@@ -1,6 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { size, map, filter } from "lodash";
-import { SERVER_RESOURCERS } from "../Utils/Constans";
 
 import { API_URL, SEARCH_CART } from "../Utils/Constans";
 
@@ -104,12 +103,12 @@ export async function decreaseProductCartApi(idProduct) {
   }
 }
 
-export async function createPayment(auth, products, address, createUrl = 1) {
+export async function createPayment(auth, products, address, email) {
   const addressShipping = address;
-  delete addressShipping.id;
+  /* delete addressShipping.id;
   delete addressShipping.attributes.createdAt;
   delete addressShipping.attributes.updatedAt;
-  delete addressShipping.attributes.publishedAt;
+  delete addressShipping.attributes.publishedAt; */
   const items = [];
   const totalProducts = products;
   totalProducts?.map((product) => {
@@ -119,7 +118,7 @@ export async function createPayment(auth, products, address, createUrl = 1) {
         ? 0
         : product.data.attributes.discount;
     const totalPrice = price - (price * disscount) / 100;
-    const url = `${SERVER_RESOURCERS}${product.data.attributes.images.data[0].attributes.formats.small.url}`;
+    const url = `${product.data.attributes.images.data[0].attributes.formats.small.url}`;
 
     const item = {
       title: product.data.attributes.title,
@@ -143,7 +142,8 @@ export async function createPayment(auth, products, address, createUrl = 1) {
         items,
         idUser: auth.idUser,
         addressShipping,
-        createUrl,
+        email,
+        createUrl: 1,
       }),
     };
     const response = await fetch(url, params);
@@ -155,13 +155,7 @@ export async function createPayment(auth, products, address, createUrl = 1) {
   }
 }
 
-export async function savePayment(
-  auth,
-  idPayment,
-  products,
-  address,
-  createUrl = 0
-) {
+export async function savePayment(auth, idPayment, products, address, email) {
   const addressShipping = address;
   const productsItems = [];
   const totalProducts = products;
@@ -172,7 +166,7 @@ export async function savePayment(
         ? 0
         : product.data.attributes.discount;
     const totalPrice = price - (price * disscount) / 100;
-    const url = `${SERVER_RESOURCERS}${product.data.attributes.images.data[0].attributes.formats.small.url}`;
+    const url = `${product.data.attributes.images.data[0].attributes.formats.small.url}`;
 
     const item = {
       id: product.data.id,
@@ -198,7 +192,8 @@ export async function savePayment(
         productsItems,
         idUser: auth.idUser,
         addressShipping,
-        createUrl,
+        createUrl: 0,
+        email
       }),
     };
     const response = await fetch(url, params);

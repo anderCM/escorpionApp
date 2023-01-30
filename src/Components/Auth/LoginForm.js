@@ -11,6 +11,7 @@ import { FormStyle } from "../../Styles";
 
 export default function LoginForm({ changeForm }) {
   const [loading, setLoading] = useState(false);
+  const [hidePassword, setHidePassword] = useState(true);
   const { login } = useAuth();
 
   const formik = useFormik({
@@ -30,16 +31,25 @@ export default function LoginForm({ changeForm }) {
       }
     },
   });
+
+  const showPassword = () => {
+    if (hidePassword) {
+      setHidePassword(false);
+    } else {
+      setHidePassword(true);
+    }
+  };
+
   return (
     <View>
       <TextInput
-        label="Correo o nombre de Usuario"
+        label="Correo"
         style={FormStyle.input}
         theme={FormStyle.themeInput}
         onChangeText={(text) => formik.setFieldValue("identifier", text)}
         value={formik.values.identifier}
         error={formik.errors.identifier}
-        placeholder="ejemplo@ejemplo.com - pepe14"
+        placeholder="ejemplo@ejemplo.com"
       />
       <TextInput
         label="Contraseña"
@@ -48,7 +58,14 @@ export default function LoginForm({ changeForm }) {
         onChangeText={(text) => formik.setFieldValue("password", text)}
         value={formik.values.password}
         error={formik.errors.password}
-        secureTextEntry
+        secureTextEntry={hidePassword ? false : true}
+        right={
+          <TextInput.Icon
+            icon={hidePassword ? "eye-off" : "eye"}
+            size={30}
+            onPress={() => showPassword()}
+          />
+        }
       />
       <Button
         mode="contained"

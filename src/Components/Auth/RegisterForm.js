@@ -1,17 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { TextInput, Button } from "react-native-paper";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import * as Google from "expo-auth-session/providers/google";
 import Toast from "react-native-root-toast";
-import { googleUserInfo } from "../../Api/User";
 
 import { RegisterApi } from "../../Api/User";
 import { FormStyle } from "../../Styles";
 
 export default function RegisterForm({ changeForm }) {
   const [loading, setLoading] = useState(false);
+  const [hidePassword, setHidePassword] = useState(false);
+
+  const showPassword = () => hidePassword ? setHidePassword(false) : setHidePassword(true);
 
   const formik = useFormik({
     initialValues: initialValues(),
@@ -44,9 +45,11 @@ export default function RegisterForm({ changeForm }) {
         theme={FormStyle.themeInput}
         placeholder="Ingresa tu correo"
       />
+
+      
       <TextInput
         label="Alias"
-        style={FormStyle.input}
+        style={[FormStyle.input /* ,{display:"none"} */]}
         onChangeText={(text) => formik.setFieldValue("username", text)}
         value={formik.values.username}
         error={formik.errors.username}
@@ -56,12 +59,19 @@ export default function RegisterForm({ changeForm }) {
       <TextInput
         label="Contraseña"
         style={FormStyle.input}
-        secureTextEntry
         onChangeText={(text) => formik.setFieldValue("password", text)}
         value={formik.values.password}
         error={formik.errors.password}
         theme={FormStyle.themeInput}
         placeholder="Ingresa una contraseña segura"
+        secureTextEntry={hidePassword ? false : true}
+        right={
+          <TextInput.Icon
+            icon={hidePassword ? "eye-off" : "eye"}
+            size={30}
+            onPress={() => showPassword()}
+          />
+        }
       />
       <Text style={styles.passwordHelp}>
         Almenos 8 caracteres, 1 Mayúscula, 1 minúscula, 1 número y un caracter
@@ -75,7 +85,14 @@ export default function RegisterForm({ changeForm }) {
         error={formik.errors.repeatPassword}
         theme={FormStyle.themeInput}
         placeholder="Ingresa una contraseña segura"
-        secureTextEntry
+        secureTextEntry={hidePassword ? false : true}
+        right={
+          <TextInput.Icon
+            icon={hidePassword ? "eye-off" : "eye"}
+            size={30}
+            onPress={() => showPassword()}
+          />
+        }
       />
       <Button
         mode="contained"
@@ -113,7 +130,7 @@ function validationSchema() {
     password: Yup.string()
       .required(true)
       .matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+        /^(?=.*[^A-Za-z0-9]+)(?=.{8,})/,
         "Almenos 8 caracteres, 1 Mayúscula, 1 minúscula, 1 número y un caracter especial"
       ),
     repeatPassword: Yup.string()
@@ -122,6 +139,17 @@ function validationSchema() {
   };
 }
 
+/* function validationSchema() {
+  return {
+    email: Yup.string().email(true).required(true),
+    username: Yup.string().required(true),
+    password: Yup.string().required(true),
+    repeatPassword: Yup.string()
+      .required(true)
+      .oneOf([Yup.ref("password")], true),
+  };
+}
+ */
 const styles = StyleSheet.create({
   passwordHelp: {
     marginTop: -20,

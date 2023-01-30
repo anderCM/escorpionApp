@@ -12,8 +12,6 @@ import Carousel from "react-native-reanimated-carousel";
 import { size } from "lodash";
 import { useNavigation } from "@react-navigation/native";
 
-import { SERVER_RESOURCERS } from "../../Utils/Constans";
-
 const width = Dimensions.get("window").width;
 const height = 160;
 
@@ -32,6 +30,7 @@ export default function Banner() {
   /*   if (!banners) return null; */
 
   const renderItem = ({ item }) => {
+    //item.attributes.banner.data[0].attributes.url.formats.small.url
     return (
       <TouchableWithoutFeedback
         onPress={() => goToProduct(item.attributes.product.data.id)}
@@ -39,7 +38,7 @@ export default function Banner() {
         <Image
           style={styles.carousel}
           source={{
-            uri: `${SERVER_RESOURCERS}${item.attributes.banner.data[0].attributes.formats.small.url}`,
+            uri: `${item.attributes.banner.data[0].attributes.url}`,
           }}
         />
       </TouchableWithoutFeedback>

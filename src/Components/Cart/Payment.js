@@ -9,17 +9,13 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import Toast from "react-native-root-toast";
 
+import { getMeApi } from "../../Api/User";
 import { createPayment } from "../../Api/Cart";
 import useAuth from "../../Hooks/useAuth";
 import { FormStyle } from "../../Styles";
 import colors from "../../Styles/Colors";
 
-export default function Payment({
-  selectedAddress,
-  products,
-  totalPayment,
-  paymentStatus,
-}) {
+export default function Payment({ selectedAddress, products, totalPayment }) {
   const [loading, setLoading] = useState(false);
   let newPrice = parseFloat(totalPayment).toFixed(2);
   const { auth } = useAuth();
@@ -48,7 +44,26 @@ export default function Payment({
   const handlePay = async () => {
     setLoading(true);
     try {
-      const paymentInfo = await createPayment(auth, products, selectedAddress);
+      const userInfo = await getMeApi(auth.token);
+      const { email } = userInfo;
+      const onSiteAddress = {
+        attributes:{
+          address: 'Jr. Andahuaylas 256',
+          city: 'Lima',
+          district: 'La Victoria',
+          reference: 'Entre Jr. Antonio Raimondi y Jr. García Naranjo',
+          title: 'Tienda Escorpión',
+          name_lastname: !selectedAddress?.attributes.name_lastname ? "Nombre quien recoge producto no ingresado" : selectedAddress.attributes.name_lastname,
+          phone: !selectedAddress?.attributes.phone ? 11111111 : selectedAddress.attributes.phone
+        }
+      }
+      const paymentInfo = await createPayment(
+        auth,
+        products,
+        onSiteAddress,
+        /* selectedAddress, */
+        email
+      );
       if (!paymentInfo.client_id) {
         Toast.show("Error Con proveedor de pago", {
           position: Toast.positions.CENTER,

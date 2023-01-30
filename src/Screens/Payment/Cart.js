@@ -1,5 +1,11 @@
-import React, { useState, useCallback, useEffect, useRef } from "react";
-import { Text, StyleSheet, ScrollView } from "react-native";
+import React, {
+  useState,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+} from "react";
+import { Text, StyleSheet, ScrollView, View } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 import { size } from "lodash";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
@@ -40,9 +46,52 @@ export default function Cart({ route }) {
     }, [])
   );
 
-  useEffect(() => {
+  const checkPayment = () => {
     if (route.params?.payment) {
-      setPaymentStatus(route.params.payment);
+      Toast.show(`Tu pago se encuentra ${route.params?.payment}`, {
+        position: Toast.positions.CENTER,
+      });
+      if (route.params.payment == "Aprobado") {
+        (async () => {
+          const onSiteAddress = {
+            attributes:{
+              address: 'Jr. Andahuaylas 256',
+              city: 'Lima',
+              district: 'La Victoria',
+              reference: 'Entre Jr. Antonio Raimondi y Jr. García Naranjo',
+              title: 'Tienda Escorpión',
+              name_lastname: !route.params.address?.attributes.name_lastname ? "Nombre quien recoge producto no ingresado" : route.params.address.attributes.name_lastname,
+              phone: !route.params.address?.attributes.phone ? 11111111 : route.params.address.attributes.phone
+            }
+          }
+          const userInfo = await getMeApi(auth.token);
+          const { email } = userInfo;
+          const response = await savePayment(
+            auth,
+            route.params.idPayment,
+            products,
+            /* route.params.address */
+            onSiteAddress,
+            email
+          );
+          if (size(response) > 0) {
+            await deleteCartApi();
+            navigation.navigate("accountApp", { screen: "my-orders" });
+          } else {
+            Toast.show("Error al realizar el pedido", {
+              position: Toast.positions.CENTER,
+            });
+          }
+        })();
+      }
+    }
+  };
+  useMemo(() => checkPayment(), [route.params?.payment]);
+  /*   useEffect(() => {
+    setPaymentStatus(route.params?.payment);
+    console.log(`1: ${paymentStatus}`);
+    if (route.params?.payment) {
+      console.log(`2: ${paymentStatus}`);
       Toast.show(`Tu pago se encuentra ${route.params.payment}`, {
         position: Toast.positions.CENTER,
       });
@@ -66,7 +115,7 @@ export default function Cart({ route }) {
       }
       route.params.payment = false;
     }
-  }, [route.params?.payment]);
+  }, [route.params?.payment]); */
 
   useEffect(() => {
     reloadCart && loadCart();
@@ -105,17 +154,22 @@ export default function Cart({ route }) {
               setReloadCart={setReloadCart}
               setTotalPayment={setTotalPayment}
             />
-            <AdressList
+            {/* <AdressList
               addresses={addresses}
               selectedAddress={selectedAddress}
               setSelectedAddress={setSelectedAddress}
-            />
+              from="cart"
+            /> */}
           </ScrollView>
+          <View style={styles.alertBox}>
+            <Text style={styles.alertText}>
+              Por el momento todos los pedidos serán entregados en tienda
+            </Text>
+          </View>
           <Payment
             totalPayment={totalPayment}
             products={products}
             selectedAddress={selectedAddress}
-            paymentStatus={paymentStatus}
           />
         </KeyboardAwareScrollView>
       )}
@@ -132,5 +186,15 @@ const styles = StyleSheet.create({
     fontSize: 24,
     textAlign: "center",
     paddingVertical: 10,
+  },
+  alertBox: {
+    backgroundColor: "#FF8E9E",
+    marginLeft: 10,
+    marginRight: 10,
+    padding: 20,
+    borderRadius: 5,
+  },
+  alertText: {
+    fontWeight: "bold",
   },
 });

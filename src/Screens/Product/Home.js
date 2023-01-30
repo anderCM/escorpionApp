@@ -1,5 +1,5 @@
-import React from "react";
-import { ScrollView } from "react-native";
+import React, { useState } from "react";
+import { View, ScrollView, Text } from "react-native";
 
 import StatusBarCustom from "../../Components/StatusBar";
 import Search from "../../Components/Search/Search";
@@ -15,10 +15,7 @@ export default function Home() {
         barStyle="light-content"
       />
       <Search />
-      <ScrollView>
-        <Banner />
-        <NewProducts />
-      </ScrollView>
+      <NewProducts />
     </>
   );
 }

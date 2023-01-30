@@ -21,8 +21,8 @@ export default function Orders() {
       })();
     }, [])
   );
-
   return (
+    
     <>
       <StatusBar />
       <ScrollView style={styles.container}>

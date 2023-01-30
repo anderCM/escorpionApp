@@ -4,8 +4,6 @@ import { Image, StyleSheet, Dimensions } from "react-native";
 import Carousel from "react-native-reanimated-carousel";
 import { size } from "lodash";
 
-import { SERVER_RESOURCERS } from "../../Utils/Constans";
-
 const width = Dimensions.get("window").width;
 const height = 400;
 
@@ -16,7 +14,7 @@ export default function CarouselImage({ images }) {
       <Image
         style={styles.carousel}
         source={{
-          uri: `${SERVER_RESOURCERS}${item.attributes.formats.small.url}`,
+          uri: `${item.attributes.formats.small.url}`,
         }}
       />
     );

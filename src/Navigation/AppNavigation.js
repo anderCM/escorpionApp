@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
-import AwesomeIcon from "react-native-vector-icons/FontAwesome";
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import AccountStack from "./AccountStack";
 import ProductStack from "./ProductStack";  
@@ -59,15 +59,15 @@ function setIcon(route, routeStatus) {
       iconName = "heart";
       break;
     case "payment":
-      iconName = "shopping-cart";
+      iconName = "cart";
       break;
     case "accountApp":
-      iconName = "user-circle-o";
+      iconName = "account";
       break;
     default:
       break;
   }
-  return <AwesomeIcon name={iconName} style={styles.icon} />;
+  return <MaterialCommunityIcons name={iconName} size={20} style={styles.icon} />;
 }
 
 const styles = StyleSheet.create({
@@ -75,7 +75,6 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
   },
   icon: {
-    fontSize: 20,
     color: colors.bgIcon,
   },
 });
