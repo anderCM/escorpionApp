@@ -206,8 +206,8 @@ This project is [MIT](./LICENSE) licensed.
 
 <div align="center">
 <h3><b>Screenshots</b></h3>
-  <img src="https://storage.googleapis.com/bucket-strapi-e-commerce/Mi_cuenta_77e7cadcba/Mi_cuenta_77e7cadcba.jpeg?updated_at=2023-02-03T23:09:28.897Z" alt="Aplicacion Mi cuenta Escorpión" width="80" height="120" style="display: inline-block;"/>
-  <img src="https://storage.googleapis.com/bucket-strapi-e-commerce/Mi_cuenta_77e7cadcba/Mi_cuenta_77e7cadcba.jpeg?updated_at=2023-02-03T23:09:28.897Z" alt="Aplicacion Mi cuenta Escorpión" width="80" height="120" style="display: inline-block;"/>
+  <img src="https://storage.googleapis.com/bucket-strapi-e-commerce/Mi_cuenta_77e7cadcba/Mi_cuenta_77e7cadcba.jpeg?updated_at=2023-02-03T23:09:28.897Z" alt="Aplicacion Mi cuenta Escorpión" width="120" height="200" style="display: inline-block;"/>
+  <img src="https://storage.googleapis.com/bucket-strapi-e-commerce/Mi_cuenta_77e7cadcba/Mi_cuenta_77e7cadcba.jpeg?updated_at=2023-02-03T23:09:28.897Z" alt="Aplicacion Mi cuenta Escorpión" width="80" height="200" style="display: inline-block;"/>
   <br/>
 
 </div>
