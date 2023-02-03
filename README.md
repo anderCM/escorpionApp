@@ -3,7 +3,7 @@
 
 <div align="center">
 
-  <img src="https://storage.googleapis.com/bucket-strapi-e-commerce/logo_894fe1d637/logo_894fe1d637.jpeg?updated_at=2023-01-17T13:38:19.651Z" alt="logo" width="140"  height="auto" />
+  <img src="https://storage.googleapis.com/bucket-strapi-e-commerce/logo_escorpion_893a5d5c7b/logo_escorpion_893a5d5c7b.jpg?updated_at=2023-01-17T13:04:00.560Z" alt="logo" width="140"  height="auto" />
   <br/>
 
   <h3><b>Textiles Rey Escorpión App</b></h3>
