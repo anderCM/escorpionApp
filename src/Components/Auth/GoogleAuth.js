@@ -17,14 +17,14 @@ export default function GoogleAuth() {
   const [request, fullResult, promptAsync] = Google.useAuthRequest(
     {
       expoClientId:
-        "yourOwnKey",
+        "your-own-id",
       iosClientId:
-        "yourOwnKey",
+        "your-own-id",
 
       androidClientId:
-        "yourOwnKey",
+        "your-own-id",
       webClientId:
-        "yourOwnKey",
+        "your-own-id",
       redirectUri: makeRedirectUri({
         useProxy: true,
       }),

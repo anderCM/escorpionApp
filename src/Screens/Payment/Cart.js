@@ -19,6 +19,7 @@ import Search from "../../Components/Search/Search";
 import NotProducts from "../../Components/Cart/NotProducts";
 import ProductList from "../../Components/Cart/ProductList";
 import { getAddressesApi } from "../../Api/Address";
+import { getMeApi } from "../../Api/User";
 import AdressList from "../../Components/Cart/AdressList";
 import Payment from "../../Components/Cart/Payment";
 import colors from "../../Styles/Colors";

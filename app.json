@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Textiles El Rey Escorpión",
-    "slug": "escorpionApp",
+    "slug": "textiles-el-rey-escorpion",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -14,15 +14,17 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "scheme":"com.reyescorpion.ecommerce",
+    "scheme": "com.reyescorpion.ecommerce",
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
+      "userInterfaceStyle": "light",
       "supportsTablet": true,
       "bundleIdentifier": "com.reyescorpion.ecommerce"
     },
     "android": {
+      "userInterfaceStyle": "light",
       "package": "com.reyescorpion.ecommerce",
       "versionCode": 1,
       "adaptiveIcon": {
@@ -35,7 +37,7 @@
     },
     "extra": {
       "eas": {
-        "projectId": "e3cca822-0859-48ca-a79a-c2aa64e446e2"
+        "projectId": "da1c6c75-4cc6-4617-b71f-d4c2e33e6117"
       }
     }
   }

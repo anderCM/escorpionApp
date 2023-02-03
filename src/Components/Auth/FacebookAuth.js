@@ -12,7 +12,7 @@ WebBrowser.maybeCompleteAuthSession();
 export default function FacebookAuth() {
   const [request, fullResult, promptAsync] = Facebook.useAuthRequest(
     {
-      clientId: "yourClientId",
+      clientId: "your-clientId",
       scopes: ["public_profile", "email"],
       redirectUri: makeRedirectUri({
         useProxy: true,
