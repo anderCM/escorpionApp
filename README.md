@@ -203,3 +203,10 @@ I would like to thank some collegues who helped me to fix some bugs.
 This project is [MIT](./LICENSE) licensed.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<div align="center">
+<h3><b>Screenshots</b></h3>
+  <img src="https://storage.googleapis.com/bucket-strapi-e-commerce/Mi_cuenta_77e7cadcba/Mi_cuenta_77e7cadcba.jpeg?updated_at=2023-02-03T23:09:28.897Z" alt="Aplicacion Mi cuenta Escorpión " />
+  <br/>
+
+</div>
