@@ -206,8 +206,9 @@ This project is [MIT](./LICENSE) licensed.
 
 <div align="center">
 <h3><b>Screenshots</b></h3>
-  <img src="https://storage.googleapis.com/bucket-strapi-e-commerce/Mi_cuenta_77e7cadcba/Mi_cuenta_77e7cadcba.jpeg?updated_at=2023-02-03T23:09:28.897Z" alt="Aplicacion Mi cuenta Escorpión" width="120" height="200" style="display: inline-block;"/>
-  <img src="https://storage.googleapis.com/bucket-strapi-e-commerce/Mi_cuenta_77e7cadcba/Mi_cuenta_77e7cadcba.jpeg?updated_at=2023-02-03T23:09:28.897Z" alt="Aplicacion Mi cuenta Escorpión" width="80" height="200" style="display: inline-block;"/>
+  <img src="https://storage.googleapis.com/bucket-strapi-e-commerce/Mi_cuenta_77e7cadcba/Mi_cuenta_77e7cadcba.jpeg?updated_at=2023-02-03T23:09:28.897Z" alt="Aplicacion Mi cuenta Textiles El Rey Escorpión" width="200" height="300" style="display: inline-block;"/>
+  <img src="https://storage.googleapis.com/bucket-strapi-e-commerce/Productos_8e5e23b796/Productos_8e5e23b796.jpeg?updated_at=2023-02-03T23:09:28.873Z" alt="Aplicacion Productos Textiles El Rey Escorpión" width="200" height="300" style="display: inline-block;"/>
+  <img src="https://storage.googleapis.com/bucket-strapi-e-commerce/Producto_b7e297d3a4/Producto_b7e297d3a4.jpeg?updated_at=2023-02-03T23:09:28.909Z" alt="Aplicacion Producto Textiles El Rey Escorpión" width="200" height="300" style="display: inline-block;"/>
   <br/>
 
 </div>
