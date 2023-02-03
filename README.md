@@ -89,7 +89,8 @@
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- [Comming Soon](Soon)
+- Download it from [Playstore](https://play.google.com/store/apps/details?id=com.reyescorpion.ecommerce)
+- Downloading for iOS comming soon
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -151,8 +152,8 @@ You can deploy this project using:
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [ ] **[Tests]**
-- [ ] **[Fix bugs]**
+- [ ] **[Native payment methos like Strapi]**
+- [ ] **[Facebook Auth]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
