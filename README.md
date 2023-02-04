@@ -3,7 +3,7 @@
 
 <div align="center">
 
-  <img src="https://storage.googleapis.com/bucket-strapi-e-commerce/logo_894fe1d637/logo_894fe1d637.jpeg?updated_at=2023-01-17T13:38:19.651Z" alt="logo" width="140"  height="auto" />
+  <img src="https://storage.googleapis.com/bucket-strapi-e-commerce/logo_escorpion_893a5d5c7b/logo_escorpion_893a5d5c7b.jpg?updated_at=2023-01-17T13:04:00.560Z" alt="logo" width="140"  height="auto" />
   <br/>
 
   <h3><b>Textiles Rey Escorpión App</b></h3>
@@ -89,7 +89,8 @@
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- [Comming Soon](Soon)
+- Download it from [Playstore](https://play.google.com/store/apps/details?id=com.reyescorpion.ecommerce)
+- Downloading for iOS comming soon
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -151,8 +152,8 @@ You can deploy this project using:
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [ ] **[Tests]**
-- [ ] **[Fix bugs]**
+- [ ] **[Native payment methos like Strapi]**
+- [ ] **[Facebook Auth]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -203,3 +204,13 @@ I would like to thank some collegues who helped me to fix some bugs.
 This project is [MIT](./LICENSE) licensed.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<div align="center">
+<h3><b>Screenshots</b></h3>
+  <img src="https://storage.googleapis.com/bucket-strapi-e-commerce/Mi_cuenta_77e7cadcba/Mi_cuenta_77e7cadcba.jpeg?updated_at=2023-02-03T23:09:28.897Z" alt="Mi cuenta Textiles El Rey Escorpión" width="170" height="400" style="display: inline-block;"/>
+  <img src="https://storage.googleapis.com/bucket-strapi-e-commerce/Productos_8e5e23b796/Productos_8e5e23b796.jpeg?updated_at=2023-02-03T23:09:28.873Z" alt="Productos Textiles El Rey Escorpión" width="170" height="400" style="display: inline-block;"/>
+  <img src="https://storage.googleapis.com/bucket-strapi-e-commerce/Producto_b7e297d3a4/Producto_b7e297d3a4.jpeg?updated_at=2023-02-03T23:09:28.909Z" alt="Producto Textiles El Rey Escorpión" width="170" height="400" style="display: inline-block;"/>
+  <img src="https://storage.googleapis.com/bucket-strapi-e-commerce/Carrito_de_compras_8ee1f18b30/Carrito_de_compras_8ee1f18b30.jpeg?updated_at=2023-02-03T23:09:28.926Z" alt="Carrito de compras Textiles El Rey Escorpión" width="170" height="400" style="display: inline-block;"/>
+  <br/>
+
+</div>
