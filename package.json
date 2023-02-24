@@ -20,10 +20,12 @@
     "dotenv": "^16.0.3",
     "eas-cli": "^3.4.1",
     "expo": "~47.0.12",
+    "expo-apple-authentication": "~5.0.1",
     "expo-auth-session": "~3.8.0",
     "expo-linking": "~3.3.0",
     "expo-modules-autolinking": "~1.0.0",
     "expo-random": "~13.0.0",
+    "expo-splash-screen": "~0.17.5",
     "expo-status-bar": "~1.4.0",
     "expo-system-ui": "^2.0.1",
     "expo-updates": "~0.15.6",
@@ -53,8 +55,7 @@
     "react-native-webview": "11.23.1",
     "react-style-proptype": "^3.2.2",
     "uuid": "^9.0.0",
-    "yup": "^0.32.11",
-    "expo-splash-screen": "~0.17.5"
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@babel/core": "^7.18.6"

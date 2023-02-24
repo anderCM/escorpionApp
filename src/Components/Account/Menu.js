@@ -2,13 +2,14 @@ import React from "react";
 import { Alert } from "react-native";
 import { List } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
+import Toast from "react-native-root-toast";
 
 import useAuth from "../../Hooks/useAuth";
+import { deleteUserApi } from "../../Api/User";
 
 export default function Menu() {
   const navigation = useNavigation();
-  const { logout } = useAuth();
-
+  const { auth, logout } = useAuth();
   const LogoutAccount = () => {
     Alert.alert(
       "Cerrar Sesión",
@@ -27,6 +28,42 @@ export default function Menu() {
       }
     );
   };
+
+  const DeleteAccount = () => {
+    Alert.alert(
+      "Eliminar cuenta",
+      "Si eliminas tu cuenta, perderás todo tu historial de compras, datos y más",
+      [
+        {
+          text: "Cancelar"
+        },
+        {
+          text: "Eliminar",
+          onPress: async () => {
+
+            try {
+              const result = await deleteUserApi(auth);
+              if (result.confirmed == true) {
+                Toast.show("Cuenta eliminada", {
+                  position: Toast.positions.CENTER,
+                });
+                logout();
+                return;
+              }
+              Toast.show("No se pudo eliminar tu cuenta", {
+                position: Toast.positions.CENTER,
+              });
+            } catch (error) {
+              console.error(error)
+            }
+          }
+        }
+      ],
+      {
+        cancelable: false,
+      }
+    )
+  }
 
   return (
     <>
@@ -55,6 +92,12 @@ export default function Menu() {
           description="Cambia la contraseña de tu cuenta"
           left={(props) => <List.Icon {...props} icon="key" />}
           onPress={() => navigation.navigate("change-password")}
+        />
+        <List.Item
+          title="Eliminar mi cuenta"
+          description="Eliminar cuenta permanentemente"
+          left={(props) => <List.Icon {...props} icon="delete" />}
+          onPress={DeleteAccount}
         />
         {/* <List.Item
           title="Mis direcciones"

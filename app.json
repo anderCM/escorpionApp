@@ -21,7 +21,8 @@
     "ios": {
       "userInterfaceStyle": "light",
       "supportsTablet": true,
-      "bundleIdentifier": "com.reyescorpion.ecommerce"
+      "bundleIdentifier": "com.reyescorpion.ecommerce",
+      "buildNumber": "1"
     },
     "android": {
       "userInterfaceStyle": "light",

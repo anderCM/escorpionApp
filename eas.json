@@ -13,6 +13,12 @@
     "production": {}
   },
   "submit": {
-    "production": {}
+    "production": {
+      "ios":{
+        "appleId": "textilreyescorpion@gmail.com",
+        "ascAppId": "1672690303",
+        "appleTeamId": "U7U3UU39C6"
+      }
+    }
   }
 }

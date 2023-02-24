@@ -77,6 +77,26 @@ export async function updateUserApi(auth, formData) {
   }
 }
 
+export async function deleteUserApi(auth) {
+  try {
+    const url = `${API_URL}/users/${auth.idUser}`;
+    const params = {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${auth.token}`,
+      },
+    };
+    const response = await fetch(url, params);
+    const result = await response.json();
+    return result;
+    /* console.log(result); */
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+}
+
 export async function googleUserInfo(accessToken) {
   try {
     const response = await fetch("https://www.googleapis.com/oauth2/v2/userinfo", {
