@@ -90,7 +90,7 @@
 ## 🚀 Live Demo <a name="live-demo"></a>
 
 - Download it from [Playstore](https://play.google.com/store/apps/details?id=com.reyescorpion.ecommerce)
-- Downloading for iOS comming soon
+- Download it from [Appstoore](https://apps.apple.com/us/app/textiles-el-rey-escorpi%C3%B3n/id1672690303)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
