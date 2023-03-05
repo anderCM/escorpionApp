@@ -18,7 +18,7 @@
     "axios": "^1.2.0",
     "deprecated-react-native-prop-types": "^2.3.0",
     "dotenv": "^16.0.3",
-    "eas-cli": "^3.4.1",
+    "eas-cli": "3.7.2",
     "expo": "~47.0.12",
     "expo-apple-authentication": "~5.0.1",
     "expo-auth-session": "~3.8.0",

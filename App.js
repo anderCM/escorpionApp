@@ -52,7 +52,10 @@ export default function App() {
 
   return (
     <AuthContext.Provider value={authData}>
-      <PaperProvider>{auth ? <AppNavigation /> : <Auth />}</PaperProvider>
+      <PaperProvider>
+        <AppNavigation />
+        {/* {auth ? <AppNavigation /> : <Auth />} */}
+      </PaperProvider>
     </AuthContext.Provider>
   );
 }

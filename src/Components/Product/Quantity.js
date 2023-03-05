@@ -25,15 +25,6 @@ export default function Quantity({ quantity, setQuantity, product }) {
         language="ES"
         listMode="SCROLLVIEW"
         dropDownDirection="TOP"
-/*         modalProps={{
-          animationType: "fade",
-        }}
-        modalTitle="Selecciona la cantidad"
-        modalContentContainerStyle={{
-          margin:"auto",
-          backgroundColor: "blue",
-          width:Dimensions.width,
-        }} */
         setOpen={setOpen}
         setValue={setValue}
         setItems={setItems}

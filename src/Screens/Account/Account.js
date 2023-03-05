@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from "react";
-import { ScrollView } from "react-native";
+import { Text, ScrollView } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
+import Toast from "react-native-root-toast";
 
 import { getMeApi } from "../../Api/User";
 import UserInfo from "../../Components/Account/UserInfo";
@@ -10,6 +11,7 @@ import StatusBar from "../../Components/StatusBar";
 import Search from "../../Components/Search";
 import colors from "../../Styles/Colors";
 import Loading from "../../Components/Loading";
+import Auth from "../Auth";
 
 export default function Account() {
   const [user, setUser] = useState(null);
@@ -17,26 +19,34 @@ export default function Account() {
   useFocusEffect(
     useCallback(() => {
       (async () => {
-        const response = await getMeApi(auth.token);
-        setUser(response);
+        if (auth) {
+          const response = await getMeApi(auth.token);
+          setUser(response);
+          return;
+        }
+        Toast.show("Es necesario iniciar sesión para ver tu información personal", {
+          position: Toast.positions.CENTER,
+        })
       })();
-    }, [])
+    }, [auth])
   );
 
   return (
     <>
       <StatusBar backgroundColor={colors.primary} />
-      {!user ? (
-        <Loading text="Cargando Perfil" size="large" />
-      ) : (
-        <>
+
           <Search />
-          <ScrollView>
-            <UserInfo user={user} />
-            <Menu />
-          </ScrollView>
-        </>
-      )}
+          {!auth ? <Auth /> :
+            (
+              !user ? (
+                <Loading text="Cargando Perfil" size="large" />
+              ) :
+                <ScrollView>
+                  <UserInfo user={user} />
+                  <Menu />
+                </ScrollView>)
+          }
+
     </>
   );
 }

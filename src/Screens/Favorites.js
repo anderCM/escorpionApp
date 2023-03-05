@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
+import { Button } from "react-native-paper";
 import { size } from "lodash";
 
 import useAuth from "../Hooks/useAuth";
@@ -11,6 +12,9 @@ import StatusBarCustom from "../Components/StatusBar";
 import colors from "../Styles/Colors";
 import favoriteBox from "../../assets/favorite.png";
 import FavoriteList from "../Components/Favorites/FavoriteList";
+import { FormStyle } from "../Styles";
+import Auth from "./Auth";
+import Toast from "react-native-root-toast";
 
 export default function Favorites() {
   const [products, setProducts] = useState(null);
@@ -20,11 +24,17 @@ export default function Favorites() {
     useCallback(() => {
       setProducts(null);
       (async () => {
-        const response = await getFavoritesApi(auth);
-        setProducts(response);
+        if (auth) {
+          const response = await getFavoritesApi(auth);
+          setProducts(response);
+          return;
+        }
+        Toast.show("Es necesario iniciar sesión para ver tus favoritos", {
+          position: Toast.positions.CENTER,
+        })
       })();
       setReloadFavorites(false);
-    }, [reloadFavorites])
+    }, [reloadFavorites, auth])
   );
 
   return (
@@ -34,7 +44,7 @@ export default function Favorites() {
         barStyle="light-content"
       />
       <Search />
-      {!products ? (
+      {!auth ? <Auth /> : !products ? (
         <Loading text="Cargando Favoritos" size="large" />
       ) : size(products.data) === 0 ? (
         <View style={styles.container}>
@@ -45,7 +55,7 @@ export default function Favorites() {
           </Text>
         </View>
       ) : (
-        <FavoriteList products={products} setReloadFavorites={setReloadFavorites}/>
+        <FavoriteList products={products} setReloadFavorites={setReloadFavorites} />
       )}
     </>
   );

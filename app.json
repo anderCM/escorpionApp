@@ -2,7 +2,7 @@
   "expo": {
     "name": "Textiles El Rey Escorpión",
     "slug": "textiles-el-rey-escorpion",
-    "version": "1.0.2",
+    "version": "1.0.6",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -22,12 +22,15 @@
       "userInterfaceStyle": "light",
       "supportsTablet": true,
       "bundleIdentifier": "com.reyescorpion.ecommerce",
-      "buildNumber": "1"
+      "infoPlist": {
+        "NSAppleSignInUsageDescription": "No se recopilan datos sensibles, solo los necesarios para iniciar sesión"
+      },
+      "buildNumber": "5"
     },
     "android": {
       "userInterfaceStyle": "light",
       "package": "com.reyescorpion.ecommerce",
-      "versionCode": 3,
+      "versionCode": 4,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FAC213"

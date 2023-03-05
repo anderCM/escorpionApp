@@ -5,6 +5,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { size } from "lodash";
 import Toast from "react-native-root-toast";
 
+import Auth from "../../Screens/Auth";
 import useAuth from "../../Hooks/useAuth";
 import {
   addFavoriteApi,
@@ -21,14 +22,22 @@ export default function Favorite({ product }) {
 
   useEffect(() => {
     (async () => {
-      const response = await isFavoriteApi(auth, product.data.id);
-      if (size(response.data) == 0) setIsFavorite(false);
-      else setIsFavorite(true);
-      setDisabledFav(false);
+      if (auth) {
+        const response = await isFavoriteApi(auth, product.data.id);
+        if (size(response.data) == 0) setIsFavorite(false);
+        else setIsFavorite(true);
+        setDisabledFav(false);
+      }
     })();
   }, [product]);
 
   const addFavorite = async () => {
+    if (!auth) {
+      Toast.show("Debes iniciar sesión primero", {
+        position: Toast.positions.CENTER,
+      });
+      return;
+    }
     const favoriteData = {
       product: product.data.id,
       user: auth.idUser,
@@ -76,7 +85,7 @@ export default function Favorite({ product }) {
         contentStyle={styles.btnAddFavoriteContent}
         onPress={isFavorite ? deleteFavorite : addFavorite}
         loading={loading}
-        disabled={disabledFav}
+        /* disabled={disabledFav} */
       >
         {isFavorite ? (
           <MaterialCommunityIcons

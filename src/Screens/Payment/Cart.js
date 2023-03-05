@@ -21,6 +21,7 @@ import ProductList from "../../Components/Cart/ProductList";
 import { getAddressesApi } from "../../Api/Address";
 import { getMeApi } from "../../Api/User";
 import AdressList from "../../Components/Cart/AdressList";
+import Auth from "../Auth";
 import Payment from "../../Components/Cart/Payment";
 import colors from "../../Styles/Colors";
 
@@ -43,9 +44,17 @@ export default function Cart({ route }) {
       setSelectedAddress(null);
 
       loadCart();
-      loadAddresses();
+      /* loadAddresses(); */
     }, [])
   );
+
+  useEffect(() => {
+    if(!auth) {
+      Toast.show("Es necesario iniciar sesión para ver tu carrito de compras", {
+        position: Toast.positions.CENTER,
+      })
+    }
+  }, [auth]);
 
   const checkPayment = () => {
     if (route.params?.payment) {
@@ -127,10 +136,10 @@ export default function Cart({ route }) {
     setCart(response);
   };
 
-  const loadAddresses = async () => {
+  /* const loadAddresses = async () => {
     const response = await getAddressesApi(auth);
     setAddresses(response.data);
-  };
+  }; */
 
   return (
     <>
@@ -138,8 +147,8 @@ export default function Cart({ route }) {
         backgroundColor={colors.primary}
         barStyle="light-content"
       />
-
-      {!cart || size(cart) === 0 ? (
+      {!auth ? <Auth /> :
+      !cart || size(cart) === 0 ? (
         <>
           <Search />
           <NotProducts />
